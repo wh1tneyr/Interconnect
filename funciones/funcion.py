@@ -8,7 +8,7 @@ def read_csv(path):
     return data
 
 #funcion para cambiar a formato fecha
-def to_datetime(data):
-    data = pd.to_datetime(data, format='%Y-%m-%d')
+def to_date_time(data):
+    data = pd.to_date_time(data, format='%Y-%m-%d')
     return data
 
