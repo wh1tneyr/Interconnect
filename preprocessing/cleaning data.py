@@ -14,4 +14,10 @@ print(user_contract.head())
 
 print(user_contract.info())
 
+# TODO : convertir 'BeginDate' a formato fecha
+# TODO: convetir 'TtalCharges a formato float
+
 print(user_contract.isna().sum())
+print(user_contract.duplicated().sum())
+print(user_contract['customerID'].duplicated().sum())
+#no hay ausentes ni duplicados 
