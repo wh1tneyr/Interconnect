@@ -27,3 +27,9 @@ user_contract['customerID'].duplicated().sum()
 user_contract['BeginDate'] = pd.to_datetime(user_contract['BeginDate'], format='%Y-%m-%d')
 user_contract['TotalCharges'] = pd.to_numeric(user_contract['TotalCharges'], errors='coerce')
  
+#comprobar nuevamente valores ausentes 
+#//user_contract.isna().sum()
+
+user_contract = user_contract.dropna().reset_index(drop=True)
+
+#//user_contract.info()
