@@ -49,3 +49,16 @@ user_personal_info.isna().sum()
 user_personal_info.duplicated().sum()
 
 """ no hay duplicados ni ausentes. Tipos de datos correctos """
+
+
+""" LIMPIAR DATOS (phone_ser) """
+
+#visualizar
+phone_ser.info()
+phone_ser.head()
+
+#ver duplicados y ausentes 
+phone_ser.isna().sum()
+phone_ser.duplicated().sum()
+
+""" no hay duplicados ni ausentes. Tipos de datos correctos """
