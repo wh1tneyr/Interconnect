@@ -12,7 +12,7 @@ user_personal_info = read_csv('/Users/whitneyrios/PYTHON/My projects py/Proyecto
 phone_ser = read_csv('/Users/whitneyrios/PYTHON/My projects py/Proyecto Final 17 Telecom/Proyecto_Final_Telecom/files/datasets/final_provider/phone.csv')
 internet_ser = read_csv('/Users/whitneyrios/PYTHON/My projects py/Proyecto Final 17 Telecom/Proyecto_Final_Telecom/files/datasets/final_provider/internet.csv')
 
-""" LIMPIAR DATOS (CONTRATOS) """
+""" LIMPIAR DATOS (contract) """
 
 #visualizar
 user_contract.head(20)
@@ -36,3 +36,16 @@ user_contract.isna().sum()
 
 #eliminar valores ausentes 
 user_contract = user_contract.dropna().reset_index(drop=True)
+
+
+""" LIMPIAR DATOS (user_personal_info) """
+
+#visualizar
+user_personal_info.info()
+user_personal_info.head()
+
+#datos nulos o duplicados
+user_personal_info.isna().sum()
+user_personal_info.duplicated().sum()
+
+""" no hay duplicados ni ausentes. Tipos de datos correctos """
