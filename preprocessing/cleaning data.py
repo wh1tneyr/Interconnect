@@ -83,7 +83,7 @@ internet_ser.isna().sum()
 internet_ser.duplicated().sum()
 
 """ no hay duplicados ni ausentes. Tipos de datos correctos """
+user_contract_cleaned = user_contract
 
 #guardar contract como un nuevo dataframe limpio
-user_contract.to_parquet('/Users/whitneyrios/PYTHON/My projects py/Proyecto Final 17 Telecom/Proyecto_Final_Telecom/files/datasets/final_provider/contract_cleaned.parquet', engine='pyarrow', index=False)
-
+user_contract.to_csv("/Users/whitneyrios/PYTHON/My projects py/Proyecto Final 17 Telecom/Proyecto_Final_Telecom/files/datasets/final_provider/contract_cleaned.csv", index=False)
