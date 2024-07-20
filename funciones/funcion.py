@@ -2,6 +2,12 @@
 # sys.path.append(os.getcwd())
 import pandas as pd
 
+#funcion para leer archivos csv
 def read_csv(path):
     data = pd.read_csv(path)
+    return data
+
+#funcion para cambiar a formato fecha
+def to_datetime(data):
+    data = pd.to_datetime(data[data['column']], format='%Y-%m-%d')
     return data
