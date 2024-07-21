@@ -22,8 +22,20 @@ def encoder(data):
     return data_encoded
     
     
+    
 """ Funcion para escalar caracteristicas numericas """
 def scaler(data):
     scaler = StandardScaler()
     data_scaled = pd.DataFrame(scaler.fit_transform(data), columns=data.columns)
     return data_scaled
+
+
+
+
+""" Funcion para guardar archivos parquet """
+def parquet(data, path):
+    engine='pyarrow'
+    index=False
+    return data.to_parquet(path, engine=engine, index=index)
+    
+    
