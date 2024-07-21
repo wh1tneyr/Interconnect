@@ -2,7 +2,7 @@ import pandas as pd
 import os, sys
 sys.path.append(os.getcwd())
 
-from funciones.funcion import read_parquet
+from funciones.funcion import read_parquet, parquet
 
 
 """ Leer datos escalados y codificados """
@@ -28,3 +28,7 @@ full_data_raw = contract_personal_merged.merge(internet_phone_merged, how='left'
 full_data_no_nan = full_data_raw.dropna().reset_index(drop=True)
 full_data_fillna_unknown = full_data_raw.fillna('unknown')
 
+
+parquet(full_data_raw, 'files/datasets/full_data_concatenated/full_data_raw.parquet')
+parquet(full_data_no_nan, 'files/datasets/full_data_concatenated/full_data_no_nan.parquet')
+parquet(full_data_fillna_unknown, 'files/datasets/full_data_concatenated/full_data_fillna_unknown.parquet')
