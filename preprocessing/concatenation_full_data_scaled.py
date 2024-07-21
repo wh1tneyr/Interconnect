@@ -37,25 +37,6 @@ user_personal_info_scaled.info()
 #concatenando contratos con personal info
 contract_personal_merged = user_contract_scaled.merge(user_personal_info_scaled, on='customerID')
 
-#concatenando internet cob phone
+#concatenando internet cobn phone
 internet_phone_merged = internet_scaled.merge(phone_scaled, how='outer', on='customerID')
-
-
-#datos ausentes en internet-phone
-internet_phone_merged.isna().sum()
-nan_internet_phone_1 = internet_phone_merged[internet_phone_merged['InternetService'].isna()]
-nan_internet_phone_2 = internet_phone_merged[internet_phone_merged['MultipleLines'].isna()]
-
-
-#comprobando en que dataframe se encuentran presentes los datos ausentes 
-nan_internet_phone_1['customerID'].isin(phone_scaled['customerID']).sum()
-nan_internet_phone_2['customerID'].isin(internet_scaled['customerID']).sum()
-        
-""" """ """ Todos los datos ausentes en 'internet_phone_merge' estan presentes en dataset 'phone_scaled' excepto los de la columna 'MultipleLines', que estan presentes en 'internet_saceld' """ """ """
-
-# TODO rellenar los datos ausentes en internet_phone_merged
-
-nan_phone_scaled_ids = nan_internet_phone_1['customerID']
-nan_internet_scaled_ids = nan_internet_phone_2['customerID']
-
 
