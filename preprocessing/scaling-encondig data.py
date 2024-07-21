@@ -59,7 +59,7 @@ internet_encoded = internet_encoded.astype('int')
 internet_concat = pd.concat([internet_id, internet_encoded], axis='columns')
 
 #guardar en un archivo parquet
-internet_concat.to_parquet('files/datasets/data scaled-encoded/internet_scaled_encoded.parquet', engine='pyarrow', index=False)
+parquet(internet_concat, 'files/datasets/data scaled-encoded/internet_scaled_encoded.parquet')
 
 
 
