@@ -75,6 +75,5 @@ phone_encoded = phone_encoded.astype('int')
 phone_concat = pd.concat([phone_id, phone_encoded], axis='columns')
 
 #guardar en un parquet 
-phone_concat.to_parquet('files/datasets/data scaled-encoded/phone_scaled_encoded.parquet', engine='pyarrow', index=False)
-
+parquet(phone_concat, 'files/datasets/data scaled-encoded/phone_scaled_encoded.parquet')
 
