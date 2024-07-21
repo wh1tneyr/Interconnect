@@ -15,9 +15,15 @@ def to_date_time(data):
 
 
 
-""" Funcion para codificar columnas categoricas """
+""" Funcion para codificar caracteristicas categoricas """
 def encoder(data):
     encoder = OrdinalEncoder()
     data_encoded = pd.DataFrame(encoder.fit_transform(data), columns=data.columns)
     return data_encoded
     
+    
+""" Funcion para escalar caracteristicas numericas """
+def scaler(data):
+    scaler = StandardScaler()
+    data_scaled = pd.DataFrame(scaler.fit_transform(data), columns=data.columns)
+    return data_scaled
