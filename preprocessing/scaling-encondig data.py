@@ -23,8 +23,7 @@ user_contract_scaled = scaler(user_contract[['MonthlyCharges', 'TotalCharges']])
 user_contract_concat = pd.concat([user_contract_date_id, user_contract_encoded, user_contract_scaled], axis='columns')
 
 #guardar en un archivo parquet
-user_contract_concat.to_parquet('files/datasets/datasets preprocessed/user_contract_scaled.parquet', engine='pyarrow', index=False)
-
+user_contract_concat.to_parquet('files/datasets/data scaled-encoded/contract_scaled_encoded.parquet', engine='pyarrow', index=False)
 
 
 """ CODIFICAR 'user_personal_info' """
@@ -41,4 +40,23 @@ user_personal_encoded = user_personal_encoded.astype('int')
 user_personal_concat = pd.concat([user_personal_info_id, user_personal_encoded], axis='columns')
 
 #guardar en un arquivo parquet
-user_personal_concat.to_parquet('files/datasets/datasets preprocessed/personal_preprocessed.parquet', engine='pyarrow', index=False)
+user_personal_concat.to_parquet('files/datasets/data scaled-encoded/personal_scaled_encoded.parquet', engine='pyarrow', index=False)
+
+
+
+""" CODIFICAR 'internet' """
+
+internet = read_csv('files/datasets/final_provider/internet.csv')
+internet_id = internet['customerID']
+internet_to_encode = internet.drop(['customerID'], axis=1)
+
+internet_encoded = encoder(internet_to_encode)
+
+#convertir a num enteros 
+internet_encoded = internet_encoded.astype('int')
+
+#concatenar un solo dataframe 
+internet_concat = pd.concat([internet_id, internet_encoded], axis='columns')
+
+#guardar en un archivo parquet
+internet_concat.to_parquet('files/datasets/data scaled-encoded/internet_scaled_encoded.parquet', engine='pyarrow', index=False)
