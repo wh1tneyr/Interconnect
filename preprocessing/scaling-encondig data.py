@@ -1,7 +1,7 @@
 import pandas as pd
 import os, sys
 sys.path.append(os.getcwd())
-from funciones.funcion import encoder, scaler, read_csv
+from funciones.funcion import encoder, scaler, read_csv, parquet
 
 
 """ CODIFICAR 'user_contract' """
@@ -23,7 +23,7 @@ user_contract_scaled = scaler(user_contract[['MonthlyCharges', 'TotalCharges']])
 user_contract_concat = pd.concat([user_contract_date_id, user_contract_encoded, user_contract_scaled], axis='columns')
 
 #guardar en un archivo parquet
-user_contract_concat.to_parquet('files/datasets/data scaled-encoded/contract_scaled_encoded.parquet', engine='pyarrow', index=False)
+parquet(user_contract_concat, 'files/datasets/data scaled-encoded/contract_scaled_encoded.parquet')
 
 
 """ CODIFICAR 'user_personal_info' """
@@ -76,3 +76,5 @@ phone_concat = pd.concat([phone_id, phone_encoded], axis='columns')
 
 #guardar en un parquet 
 phone_concat.to_parquet('files/datasets/data scaled-encoded/phone_scaled_encoded.parquet', engine='pyarrow', index=False)
+
+
