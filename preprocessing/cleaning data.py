@@ -2,16 +2,16 @@ import pandas as pd
 import os, sys
 sys.path.append(os.getcwd())
 
-from funciones.funcion import read_csv
+from funciones.funcion import read_csv, to_date_time
 
 
 
 """ LEER LOS DATOS """
 
-user_contract = read_csv('/Users/whitneyrios/PYTHON/My projects py/Proyecto Final 17 Telecom/Proyecto_Final_Telecom/files/datasets/final_provider/contract.csv')
-user_personal_info = read_csv('/Users/whitneyrios/PYTHON/My projects py/Proyecto Final 17 Telecom/Proyecto_Final_Telecom/files/datasets/final_provider/personal.csv')
-phone_ser = read_csv('/Users/whitneyrios/PYTHON/My projects py/Proyecto Final 17 Telecom/Proyecto_Final_Telecom/files/datasets/final_provider/phone.csv')
-internet_ser = read_csv('/Users/whitneyrios/PYTHON/My projects py/Proyecto Final 17 Telecom/Proyecto_Final_Telecom/files/datasets/final_provider/internet.csv')
+user_contract = read_csv('files/datasets/final_provider/contract.csv')
+user_personal_info = read_csv('files/datasets/final_provider/personal.csv')
+phone_ser = read_csv('files/datasets/final_provider/phone.csv')
+internet_ser = read_csv('files/datasets/final_provider/internet.csv')
 
 
 
@@ -87,4 +87,5 @@ internet_ser.duplicated().sum()
 
 user_contract_cleaned = user_contract
 
-user_contract_cleaned.to_parquet('/Users/whitneyrios/PYTHON/My projects py/Proyecto Final 17 Telecom/Proyecto_Final_Telecom/files/datasets/final_provider/contract_cleaned.parquet', engine='pyarrow', index=False)
+user_contract_cleaned.to_parquet('files/datasets/final_provider/contract_cleaned.parquet', engine='pyarrow', index=False)
+
