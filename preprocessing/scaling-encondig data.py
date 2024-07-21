@@ -60,3 +60,19 @@ internet_concat = pd.concat([internet_id, internet_encoded], axis='columns')
 
 #guardar en un archivo parquet
 internet_concat.to_parquet('files/datasets/data scaled-encoded/internet_scaled_encoded.parquet', engine='pyarrow', index=False)
+
+
+
+""" CODIFICAR 'phone' """
+phone = read_csv('files/datasets/final_provider/phone.csv')
+phone_id = phone['customerID']
+
+phone_encoded = encoder(phone)
+phone_encoded = phone_encoded.drop(['customerID'], axis=1)
+phone_encoded = phone_encoded.astype('int')
+
+#concatenar todo en un dataframe
+phone_concat = pd.concat([phone_id, phone_encoded], axis='columns')
+
+#guardar en un parquet 
+phone_concat.to_parquet('files/datasets/data scaled-encoded/phone_scaled_encoded.parquet', engine='pyarrow', index=False)
