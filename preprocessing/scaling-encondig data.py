@@ -40,7 +40,7 @@ user_personal_encoded = user_personal_encoded.astype('int')
 user_personal_concat = pd.concat([user_personal_info_id, user_personal_encoded], axis='columns')
 
 #guardar en un arquivo parquet
-user_personal_concat.to_parquet('files/datasets/data scaled-encoded/personal_scaled_encoded.parquet', engine='pyarrow', index=False)
+parquet(user_personal_concat, 'files/datasets/data scaled-encoded/personal_scaled_encoded.parquet')
 
 
 
