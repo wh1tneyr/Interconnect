@@ -21,12 +21,10 @@ user_personal_info_scaled.info()
 contract_personal_merged = user_contract_scaled.merge(user_personal_info_scaled, on='customerID')
 
 #concatenando internet cobn phone
-internet_phone_merged = internet_scaled.merge(phone_scaled, how='outer', on='customerID').astype('int')
-
-#rellenar los ausentes con 'unknown'
-internet_phone_merged = internet_phone_merged.fillna('unknown')
+internet_phone_merged = internet_scaled.merge(phone_scaled, how='outer', on='customerID')
 
 #concatenar un solo dataframe
-full_data = contract_personal_merged.merge(internet_phone_merged, how='left', on='customerID')
+full_data_raw = contract_personal_merged.merge(internet_phone_merged, how='left', on='customerID')
+full_data_no_nan = full_data_raw.dropna().reset_index(drop=True)
+full_data_fillna_unknown = full_data_raw.fillna('unknown')
 
-full_data
