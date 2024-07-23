@@ -18,11 +18,8 @@ phone_prep = read_csv('files/datasets/final_provider/phone.csv')
 
 contract_prep['target'] = contract_prep['EndDate']
 
-contract_prep['target'] = contract_prep['target'].replace('No', '1')
- 
-   
-contract_prep[contract_prep['target'] != '1'] = '0'
 
-contract_prep['target'] = contract_prep['target'].astype('int')
+contract_prep['target'] = contract_prep['target'].replace('No', '1').apply(lambda x: 1 if x == '1' else 0)
+
 
 contract_prep
