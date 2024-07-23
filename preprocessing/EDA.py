@@ -12,7 +12,7 @@ personal_prep = read_csv('files/datasets/final_provider/personal.csv')
 phone_prep = read_csv('files/datasets/final_provider/phone.csv')
 
 
-""" Examinar la variable target y ver el equilibrio de clases """
+""" Examinar la variable target """
 #crear una variable target y pasar los NO a 1 y las fechas a 0
 # 1 = sigue vigente,
 # 0 = contrato terminado
@@ -22,6 +22,14 @@ contract_prep['target'] = contract_prep['target'].replace('No', '1').apply(lambd
 
 
 """ Evaluar el desequilibrio de clases """
-contract_prep['target'].value_counts()
 
-""" """ """ Hay desequilibrio de clases, significa que 1869  personas han terminado su contrato. El resto tiene contrato vigente con la empesa hasta el momento """ """ """
+contract_prep['target'].value_counts()
+# hay desequilibrio de clases 
+
+
+""" FECHAS """
+
+'Primera fecha registrada:', contract_prep['BeginDate'].sort_values().min()
+'Ultima fecha registrada:', contract_prep['BeginDate'].sort_values().max()
+#el dataset tiene datos registrados desde el primero de octubre del 2013 hasta el 01 de enero del 2020
+
