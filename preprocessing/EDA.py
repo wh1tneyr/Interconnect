@@ -17,13 +17,13 @@ phone_prep = read_csv('files/datasets/final_provider/phone.csv')
 # 1 = sigue vigente,
 # 0 = contrato terminado
 
-contract_prep['target'] = contract_prep['EndDate']
-contract_prep['target'] = contract_prep['target'].replace('No', '1').apply(lambda x: 1 if x == '1' else 0)
+contract_prep['churn'] = contract_prep['EndDate']
+contract_prep['churn'] = contract_prep['churn'].replace('No', '1').apply(lambda x: 1 if x == '1' else 0)
 
 
 """ Evaluar el desequilibrio de clases """
 
-contract_prep['target'].value_counts()
+contract_prep['churn'].value_counts()
 # hay desequilibrio de clases 
 
 
@@ -33,3 +33,5 @@ contract_prep['target'].value_counts()
 'Ultima fecha registrada:', contract_prep['BeginDate'].sort_values().max()
 #el dataset tiene datos registrados desde el primero de octubre del 2013 hasta el 01 de enero del 2020
 
+
+""" Evaluar la variable churn respecto al tipo de pago """
