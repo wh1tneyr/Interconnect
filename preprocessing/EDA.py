@@ -35,7 +35,7 @@ contract_prep['churn'].value_counts()
 
 
 """ Evaluar la variable churn respecto al tipo de pago """
-contract_prep.groupby('Type')['churn'].value_counts()
+churn_contract_type = contract_prep.groupby('Type')['churn'].value_counts()
 
 #de los planes cancelados, la mayoria pertence al tipo de pago mes a mes. La menor fuga se presenta en los planes de dos años. 
 
