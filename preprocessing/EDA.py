@@ -13,7 +13,7 @@ phone_prep = read_csv('files/datasets/final_provider/phone.csv')
 
 
 """ Examinar la variable target """
-#crear una variable target y pasar los NO a 1 y las fechas a 0
+#crear una variable churn y pasar los 'No' a 1 y las fechas a 0
 # 1 = sigue vigente,
 # 0 = contrato terminado
 
@@ -35,3 +35,7 @@ contract_prep['churn'].value_counts()
 
 
 """ Evaluar la variable churn respecto al tipo de pago """
+contract_prep.groupby('Type')['churn'].value_counts()
+
+#de los planes cancelados, la mayoria pertence al tipo de pago mes a mes. La menor fuga se presenta en los planes de dos años. 
+
