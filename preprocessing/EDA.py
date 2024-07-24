@@ -34,8 +34,43 @@ contract_prep['churn'].value_counts()
 #el dataset tiene datos registrados desde el primero de octubre del 2013 hasta el 01 de enero del 2020
 
 
-#Evaluar la variable churn respecto al tipo de pago
-churn_contract_type = contract_prep.groupby('Type')['churn'].value_counts()
+""" EVALUAR TASA DE CANCELACION SEGUN EL TIPO DE CONTRATO """
+
+churn_per_type = contract_prep.groupby('Type')['churn'].value_counts()
+
+# Convertir el índice en columnas para acceder a los valores de 'churn'
+churn_values = churn_per_type.reset_index(name='count')
+
+# filtrar los contratos cancelados y los vigentes 
+in_ = churn_values[churn_values['churn'] == 1].reset_index(drop=True)
+in_ = in_.drop(['churn'], axis=1)
+in_.columns = ['Type', 'In']
+
+
+out_ = churn_values[churn_values['churn'] == 0].reset_index(drop=True)
+out_ = out_.drop(['churn'], axis=1)
+out_.columns = ['Type', 'Out']
+
+# crear un nuevo dataframe con el conteo de contratos por tipo 
+contract_count = contract_prep.groupby('Type')['customerID'].count()
+
+# Convertir el índice en columnas para acceder a los valores de 'type'
+contract_count = contract_count.reset_index(name='Count')
+
+# incluir la info de los contratos vigentes y los canccelado en el nuevo df
+merge_1 = contract_count.merge(in_, on='Type', how='inner')
+contract_churn = merge_1.merge(out_, on='Type')
+
+
+
+for index, row in contract_churn.iterrows():
+    churn_rate = (row['Out'] / row['Count']) * 100
+    contract_churn.at[index, 'churn_rate'] = churn_rate
+
+
+contract_churn
+
+
 
 #crear grafico de barras
 colors = ['blue', 'orange']
@@ -51,7 +86,4 @@ plt.legend(title='Churn', labels=['No', 'Yes'])
 churn_contract_type.set_xlabel(rotation=45)
 
 plt.show()
-#de los planes cancelados, la mayoria pertence al tipo de pago mes a mes. La menor fuga se presenta en los planes de dos años. 
-
-#Calcular el porcentaje de cancelacion segun el tipo de contrato
-contract_type_count = contract_prep.groupby('Type')['customerID'].count()
+ 
