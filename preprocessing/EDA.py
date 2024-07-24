@@ -51,7 +51,7 @@ plt.legend(title='Churn', labels=['No', 'Yes'])
 churn_contract_type.set_xlabel(rotation=45)
 
 plt.show()
-
-
 #de los planes cancelados, la mayoria pertence al tipo de pago mes a mes. La menor fuga se presenta en los planes de dos años. 
 
+#Calcular el porcentaje de cancelacion segun el tipo de contrato
+contract_type_count = contract_prep.groupby('Type')['customerID'].count()
