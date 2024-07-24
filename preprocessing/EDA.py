@@ -68,22 +68,16 @@ for index, row in contract_churn.iterrows():
     contract_churn.at[index, 'churn_rate'] = churn_rate
 
 
-contract_churn
-
-
-
 #crear grafico de barras
-colors = ['blue', 'orange']
-churn_contract_type.plot(kind='bar', color=colors, edgecolor='black')
+colors = ['blue', 'orange', ]
+ax = contract_churn[['In', 'Out']].plot(kind='bar', color=colors, edgecolor='black')
+ax.set_xticklabels(contract_churn['Type'], rotation=45)
 
 # Agregar título y etiquetas
 plt.title('Conteo de Churn por Tipo de Contrato')
 plt.xlabel('Tipo de Contrato')
 plt.ylabel('Conteo de Churn')
-plt.legend(title='Churn', labels=['No', 'Yes'])
-
-# Inclinar las etiquetas del eje y
-churn_contract_type.set_xlabel(rotation=45)
+plt.legend(title='Contratos', labels=['In', 'Out'])
 
 plt.show()
- 
+
