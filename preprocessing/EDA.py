@@ -70,8 +70,8 @@ for index, row in contract_churn.iterrows():
 
 #crear grafico de barras
 colors = ['blue', 'orange', ]
-ax = contract_churn[['In', 'Out']].plot(kind='bar', color=colors, edgecolor='black')
-ax.set_xticklabels(contract_churn['Type'], rotation=45)
+ax_churn = contract_churn[['In', 'Out']].plot(kind='bar', color=colors, edgecolor='black')
+ax_churn.set_xticklabels(contract_churn['Type'], rotation=45)
 
 # Agregar título y etiquetas
 plt.title('Conteo de Churn por Tipo de Contrato')
@@ -81,3 +81,7 @@ plt.legend(title='Contratos', labels=['In', 'Out'])
 
 plt.show()
 
+
+# ver la cantidad de meses en month-to-month hasta abandonar plan 
+
+months_to_churn = contract_prep[(contract_prep['Type'] == 'Month-to-month') & (contract_prep['churn'] == 0)]
