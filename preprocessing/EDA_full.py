@@ -108,6 +108,10 @@ plt.show()
 
 
 """ EVALUAR LOS MONTOS MENSUALES SEGUN TIPO DE CONTRATO """
-monthly_charges_per_type_churn = full_data.groupby(['Type', 'Churn'])['MonthlyCharges'].mean()
 
-monthly_charges_per_type_churn
+# agrupar por tipo de contrato  churn y ver el promedio de los cargos mensuales
+monthly_char_type_churn = full_data.groupby(['Type', 'Churn'])['MonthlyCharges'].mean()
+
+# reindexar para acceder a los montos 
+monthly_char_type_churn = monthly_char_type_churn.reset_index(name='MonthlyChrges')
+
