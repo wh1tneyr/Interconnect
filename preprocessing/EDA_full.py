@@ -53,7 +53,6 @@ full_data['Churn'] = full_data['Churn'].replace('No', '1').apply(lambda x: 1 if 
 parquet(full_data, 'files/datasets/final_provider/full_data.parquet')
 
 
-
 """ DESEQUILIBRIO DE CLASES """
 
 full_data['Churn'].value_counts()
@@ -65,4 +64,24 @@ full_data['Churn'].value_counts()
 'Primera fecha registrada:', full_data['BeginDate'].sort_values().min()
 'Ultima fecha registrada:', full_data['BeginDate'].sort_values().max()
 
-#el dataset tiene datos registrados desde el primero de octubre del 2013 hasta el 01 de enero del 2020
+# el dataset tiene datos registrados desde el primero de octubre del 2013 hasta el 01 de enero del 2020
+
+
+""" EVALUAR TASA DE CANCELACION SEGUN EL TIPO DE CONTRATO """
+
+# agrupar por tipo de contrato y hacer conteo de churn
+churn_per_type = full_data.groupby('Type')['Churn'].value_counts()
+
+# convertir el índice en columnas para acceder a los valores de 'churn'
+churn_per_type = churn_per_type.reset_index(name='Count')
+
+# filtrar los contratos cancelados y los vigentes 
+in_ = churn_per_type[churn_per_type['Churn'] == 1].reset_index(drop=True)
+in_ = in_.drop(['Churn'], axis=1)
+in_.columns = ['Type', 'In']
+
+
+out_ = churn_per_type[churn_per_type['Churn'] == 0].reset_index(drop=True)
+out_ = out_.drop(['Churn'], axis=1)
+out_.columns = ['Type', 'Out']
+
