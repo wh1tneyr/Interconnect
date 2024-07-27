@@ -2,7 +2,9 @@ import pandas as pd
 import os, sys
 sys.path.append(os.getcwd())
 
-from funciones.funcion import read_csv, read_parquet, parquet
+from funciones.funcion import read_csv, read_parquet, parquet, group_service
+
+
 import matplotlib.pyplot as plt
 
 """ LEER DATOS """
