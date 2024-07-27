@@ -152,5 +152,9 @@ plt.show()
 internet_churn = full_data.groupby('InternetService')['Churn'].value_counts()
 
 # convertir el indice en columnas 
-internet_churn  =internet_churn.reset_index(name='Count')
+internet_churn  = internet_churn.reset_index(name='Count')
 
+# eliminar la clase positiva y evaluar la tasa de cancelacion
+internet_churn_rate = internet_churn[internet_churn['Churn'] == 0].drop(['Churn'], axis=1)
+
+internet_churn_rate
