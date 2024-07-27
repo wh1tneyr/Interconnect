@@ -79,12 +79,12 @@ churn_per_type = churn_per_type.reset_index(name='Count')
 
 # filtrar los contratos cancelados y los vigentes 
 in_ = churn_per_type[churn_per_type['Churn'] == 1].reset_index(drop=True)
-in_ = in_.drop(['Churn'], axis=1)
+in_ = in_.drop(['Churn'], axis=1).reset_index(drop=True)
 in_.columns = ['Type', 'In']
 
 
 out_ = churn_per_type[churn_per_type['Churn'] == 0].reset_index(drop=True)
-out_ = out_.drop(['Churn'], axis=1)
+out_ = out_.drop(['Churn'], axis=1).reset_index(drop=True)
 out_.columns = ['Type', 'Out']
 
 
@@ -99,9 +99,9 @@ ax_type_churn_count = type_churn_count.plot(kind='bar', color=colors, edgecolor=
 ax_type_churn_count.set_xticklabels(type_churn_count['Type'], rotation=45)
 
 # Agregar título y etiquetas
-plt.title('Conteo de Churn por Tipo de Contrato')
+plt.title('Tasa de cancelación por tipo de contrato')
 plt.xlabel('Tipo de Contrato')
-plt.ylabel('Conteo de Churn')
+plt.ylabel('Tasa de cancelación')
 plt.legend(title='Contratos', labels=['In', 'Out'])
 
 plt.show()
@@ -119,11 +119,11 @@ monthly_type_churn = monthly_type_churn.reset_index(name='MonthlyChrges')
 
 # filtrar por contratos cancelados y vigentes
 in_ = monthly_type_churn[monthly_type_churn['Churn'] == 1].reset_index(drop=True)
-in_ = in_.drop(['Churn'], axis=1)
+in_ = in_.drop(['Churn'], axis=1).reset_index(drop=True)
 in_.columns = ['Type', 'In']
 
 out_ = monthly_type_churn[monthly_type_churn['Churn'] == 0].reset_index(drop=True)
-out_ = out_.drop(['Churn'], axis=1)
+out_ = out_.drop(['Churn'], axis=1).reset_index(drop=True)
 out_.columns = ['Type', 'Out']
 
 monthly_charges_mean = in_.merge(out_, on='Type')
@@ -133,7 +133,7 @@ monthly_charges_mean = in_.merge(out_, on='Type')
 # crear grafico de barras 
 colors = ['blue', 'orange']
 
-ax_monthly_charges_mean = monthly_charges_mean.plot(kind='bar', color=colors)
+ax_monthly_charges_mean = monthly_charges_mean.plot(kind='bar', color=colors, edgecolor='black')
 ax_monthly_charges_mean.set_xticklabels(monthly_charges_mean['Type'], rotation=45)
 
 # Agregar título y etiquetas
@@ -155,12 +155,11 @@ internet_churn = full_data.groupby('InternetService')['Churn'].value_counts()
 internet_churn  = internet_churn.reset_index(name='Count')
 
 # eliminar la clase positiva y evaluar la tasa de cancelacion
-internet_churn_rate = internet_churn[internet_churn['Churn'] == 0].drop(['Churn'], axis=1)
+internet_churn_rate = internet_churn[internet_churn['Churn'] == 0].drop(['Churn'], axis=1).reset_index(drop=True)
 
 
 #visualizar tasa de cancelacion en internet_service
-#colors = ['blue', 'orange', 'green']
-ax_internet_churn_rate = internet_churn_rate.plot(kind='bar', legend=False)
+ax_internet_churn_rate = internet_churn_rate.plot(kind='bar', legend=False, edgecolor='black')
 ax_internet_churn_rate.set_xticklabels(internet_churn_rate['InternetService'], rotation=45)
 
 # Agregar título y etiquetas
@@ -170,3 +169,17 @@ plt.ylabel('Tasa de cancelacion')
 plt.show()
 
 # La tasa de cancelacion es mas alta entre los clientes con internet de fibra optica y mas baja entre los que no tienen servicio de internet
+
+
+""" EVALUAR TASA DE CANCELACION SEGUN OTROS SERVICIOS DERIVADOS DE INTERNET """
+
+services = ['OnlineSecurity', 'OnlineBackup', 'DeviceProtection', 'TechSupport', 'StreamingTV', 'StreamingMovies']
+
+
+# crear una funcion para agrupar por servicio y contar las cancelaciones 
+def group_service(full_data, column):
+    values = full_data.groupby(column)['Churn'].value_counts()
+    values = values.reset_index(name='count')
+    #conservar solo la clase negativa 
+    data = values[values['Churn'] == 0].drop(['Churn'], axis=1).reset_index(drop=True)
+    return data
