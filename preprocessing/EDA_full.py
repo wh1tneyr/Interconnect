@@ -106,3 +106,8 @@ plt.legend(title='Contratos', labels=['In', 'Out'])
 
 plt.show()
 
+
+""" EVALUAR LOS MONTOS MENSUALES SEGUN TIPO DE CONTRATO """
+monthly_charges_per_type_churn = full_data.groupby(['Type', 'Churn'])['MonthlyCharges'].mean()
+
+monthly_charges_per_type_churn
