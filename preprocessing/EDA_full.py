@@ -90,3 +90,19 @@ out_.columns = ['Type', 'Out']
 
 # crear un nuevo dataframe para el conteo de cancelacion por tipo de contrato 
 type_churn_count = in_.merge(out_, on='Type')
+
+
+# visualizar el conteo de churn por tipo de contrato
+#crear grafico de barras
+colors = ['blue', 'orange', ]
+ax_type_churn_count = type_churn_count.plot(kind='bar', color=colors, edgecolor='black')
+ax_type_churn_count.set_xticklabels(type_churn_count['Type'], rotation=45)
+
+# Agregar título y etiquetas
+plt.title('Conteo de Churn por Tipo de Contrato')
+plt.xlabel('Tipo de Contrato')
+plt.ylabel('Conteo de Churn')
+plt.legend(title='Contratos', labels=['In', 'Out'])
+
+plt.show()
+
