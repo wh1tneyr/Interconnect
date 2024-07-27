@@ -142,3 +142,15 @@ plt.xlabel('Tipo de Contrato')
 plt.ylabel('Promedio de cargos mensuales')
 plt.legend(labels=['In', 'Out'])
 plt.show()
+
+# En promedio, los cargos mensuales son mas altos en los contratos que han cancelado el servicio
+
+
+""" EVALUAR EL SERVICIO DE INTERNET Y LA TASA DE CANCELACION """
+
+# agrupar por internet 
+internet_churn = full_data.groupby('InternetService')['Churn'].value_counts()
+
+# convertir el indice en columnas 
+internet_churn  =internet_churn.reset_index(name='Count')
+
