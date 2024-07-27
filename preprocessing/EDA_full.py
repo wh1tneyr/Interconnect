@@ -41,3 +41,11 @@ full_data.isna().sum()
 full_data = full_data.fillna('No')
 
 full_data.isna().sum()
+
+
+#crear una variable Churn y pasar los 'No' a 1 y las fechas a 0
+# 1 = sigue vigente,
+# 0 = contrato terminado
+
+full_data['Churn'] = full_data['EndDate']
+full_data['Churn'] = full_data['Churn'].replace('No', '1').apply(lambda x: 1 if x == '1' else 0)
