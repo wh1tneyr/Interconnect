@@ -48,4 +48,5 @@ def group_service(full_data, column):
     values = values.reset_index(name='count')
     #conservar solo la clase negativa 
     data = values[values['Churn'] == 0].drop(['Churn'], axis=1).reset_index(drop=True)
+    data = data.sort_values(by='count', ascending=False)
     return data
