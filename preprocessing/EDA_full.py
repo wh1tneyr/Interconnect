@@ -2,7 +2,7 @@ import pandas as pd
 import os, sys
 sys.path.append(os.getcwd())
 
-from funciones.funcion import read_csv, read_parquet
+from funciones.funcion import read_csv, read_parquet, parquet
 import matplotlib.pyplot as plt
 
 """ LEER DATOS """
@@ -49,3 +49,6 @@ full_data.isna().sum()
 
 full_data['Churn'] = full_data['EndDate']
 full_data['Churn'] = full_data['Churn'].replace('No', '1').apply(lambda x: 1 if x == '1' else 0)
+
+# guardar full_data como parquet
+parquet(full_data, 'files/datasets/final_provider/full_data.parquet')
