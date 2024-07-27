@@ -112,11 +112,12 @@ plt.show()
 # agrupar por tipo de contrato  churn y ver el promedio de los cargos mensuales
 monthly_type_churn = full_data.groupby(['Type', 'Churn'])['MonthlyCharges'].mean()
 
+
 # reindexar para acceder a los montos 
 monthly_type_churn = monthly_type_churn.reset_index(name='MonthlyChrges')
 
-# filtrar por contratos cancelados y vigentes
 
+# filtrar por contratos cancelados y vigentes
 in_ = monthly_type_churn[monthly_type_churn['Churn'] == 1].reset_index(drop=True)
 in_ = in_.drop(['Churn'], axis=1)
 in_.columns = ['Type', 'In']
@@ -127,21 +128,17 @@ out_.columns = ['Type', 'Out']
 
 monthly_charges_mean = in_.merge(out_, on='Type')
 
-monthly_charges_mean
-
-
-
 
 # visualizar los montos mensuales
 # crear grafico de barras 
 colors = ['blue', 'orange']
 
-ax_monthly_char_type = monthly_char_type_churn.plot(kind='bar', color=colors)
-ax_monthly_char_type.set_xticklabels(monthly_char_type_churn['Type'], rotation=45)
+ax_monthly_charges_mean = monthly_charges_mean.plot(kind='bar', color=colors)
+ax_monthly_charges_mean.set_xticklabels(monthly_charges_mean['Type'], rotation=45)
 
 # Agregar título y etiquetas
 plt.title('Promedio de cargos mensuales segun tipo de contrato y cancelacion')
 plt.xlabel('Tipo de Contrato')
 plt.ylabel('Promedio de cargos mensuales')
-plt.legend(title='Contratos', labels=['In', 'Out'])
+plt.legend(labels=['In', 'Out'])
 plt.show()
