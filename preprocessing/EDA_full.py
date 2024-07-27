@@ -176,10 +176,3 @@ plt.show()
 services = ['OnlineSecurity', 'OnlineBackup', 'DeviceProtection', 'TechSupport', 'StreamingTV', 'StreamingMovies']
 
 
-# crear una funcion para agrupar por servicio y contar las cancelaciones 
-def group_service(full_data, column):
-    values = full_data.groupby(column)['Churn'].value_counts()
-    values = values.reset_index(name='count')
-    #conservar solo la clase negativa 
-    data = values[values['Churn'] == 0].drop(['Churn'], axis=1).reset_index(drop=True)
-    return data
