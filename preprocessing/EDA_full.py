@@ -72,8 +72,10 @@ full_data['Churn'].value_counts()
 # agrupar por tipo de contrato y hacer conteo de churn
 churn_per_type = full_data.groupby('Type')['Churn'].value_counts()
 
+
 # convertir el índice en columnas para acceder a los valores de 'churn'
 churn_per_type = churn_per_type.reset_index(name='Count')
+
 
 # filtrar los contratos cancelados y los vigentes 
 in_ = churn_per_type[churn_per_type['Churn'] == 1].reset_index(drop=True)
@@ -85,3 +87,6 @@ out_ = churn_per_type[churn_per_type['Churn'] == 0].reset_index(drop=True)
 out_ = out_.drop(['Churn'], axis=1)
 out_.columns = ['Type', 'Out']
 
+
+# crear un nuevo dataframe para el conteo de cancelacion por tipo de contrato 
+type_churn_count = in_.merge(out_, on='Type')
