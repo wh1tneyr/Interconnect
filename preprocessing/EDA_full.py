@@ -46,9 +46,17 @@ full_data.isna().sum()
 #crear una variable Churn y pasar los 'No' a 1 y las fechas a 0
 # 1 = sigue vigente,
 # 0 = contrato terminado
-
 full_data['Churn'] = full_data['EndDate']
 full_data['Churn'] = full_data['Churn'].replace('No', '1').apply(lambda x: 1 if x == '1' else 0)
 
+
 # guardar full_data como parquet
 parquet(full_data, 'files/datasets/final_provider/full_data.parquet')
+
+
+
+
+""" DESEQUILIBRIO DE CLASES """
+full_data['Churn'].value_counts()
+
+# hay un fuerte desequilibrio entre la clases negativa y positiva
