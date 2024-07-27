@@ -12,7 +12,6 @@ personal_prep = read_csv('files/datasets/final_provider/personal.csv')
 phone_prep = read_csv('files/datasets/final_provider/phone.csv')
 
 
-
 # concatenar cotract_prep e internet_prep (sin escalar ni codificar)
 merge_1 = contract_prep.merge(internet_prep, on='customerID', how='left')
 
@@ -55,8 +54,15 @@ parquet(full_data, 'files/datasets/final_provider/full_data.parquet')
 
 
 
-
 """ DESEQUILIBRIO DE CLASES """
-full_data['Churn'].value_counts()
 
+full_data['Churn'].value_counts()
 # hay un fuerte desequilibrio entre la clases negativa y positiva
+
+
+""" FECHAS DE REGISTRO"""
+
+'Primera fecha registrada:', full_data['BeginDate'].sort_values().min()
+'Ultima fecha registrada:', full_data['BeginDate'].sort_values().max()
+
+#el dataset tiene datos registrados desde el primero de octubre del 2013 hasta el 01 de enero del 2020
