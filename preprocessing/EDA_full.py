@@ -157,4 +157,16 @@ internet_churn  = internet_churn.reset_index(name='Count')
 # eliminar la clase positiva y evaluar la tasa de cancelacion
 internet_churn_rate = internet_churn[internet_churn['Churn'] == 0].drop(['Churn'], axis=1)
 
-internet_churn_rate
+
+#visualizar tasa de cancelacion en internet_service
+#colors = ['blue', 'orange', 'green']
+ax_internet_churn_rate = internet_churn_rate.plot(kind='bar', legend=False)
+ax_internet_churn_rate.set_xticklabels(internet_churn_rate['InternetService'], rotation=45)
+
+# Agregar título y etiquetas
+plt.title('Tasa de cancelacion según tipo de internet')
+plt.xlabel('Servicio de internet')
+plt.ylabel('Tasa de cancelacion')
+plt.show()
+
+# La tasa de cancelacion es mas alta entre los clientes con internet de fibra optica y mas baja entre los que no tienen servicio de internet
