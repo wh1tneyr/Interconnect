@@ -97,17 +97,17 @@ type_churn_count = in_.merge(out_, on='Type')
 """ Grafico: tasa de cancelación por tipo de contrato"""
 
 #crear grafico de barras
-colors = ['blue', 'orange', ]
-ax_type_churn_count = type_churn_count.plot(kind='bar', color=colors, edgecolor='black')
-ax_type_churn_count.set_xticklabels(type_churn_count['Type'], rotation=45)
+# colors = ['blue', 'orange', ]
+# ax_type_churn_count = type_churn_count.plot(kind='bar', color=colors, edgecolor='black')
+# ax_type_churn_count.set_xticklabels(type_churn_count['Type'], rotation=45)
 
-# Agregar título y etiquetas
-plt.title('Tasa de cancelación por tipo de contrato')
-plt.xlabel('Tipo de Contrato')
-plt.ylabel('Tasa de cancelación')
-plt.legend(title='Contratos', labels=['In', 'Out'])
+# # Agregar título y etiquetas
+# plt.title('Tasa de cancelación por tipo de contrato')
+# plt.xlabel('Tipo de Contrato')
+# plt.ylabel('Tasa de cancelación')
+# plt.legend(title='Contratos', labels=['In', 'Out'])
 
-plt.show()
+# plt.show()
 
 
 """ EVALUAR LOS MONTOS MENSUALES SEGUN TIPO DE CONTRATO """
@@ -134,19 +134,20 @@ monthly_charges_mean = in_.merge(out_, on='Type')
 """ Grafico: promedio de cargos mensuales segun tipo de contrato y cancelacion"""
 # visualizar los montos mensuales
 # crear grafico de barras 
-colors = ['blue', 'orange']
+# colors = ['blue', 'orange']
 
-ax_monthly_charges_mean = monthly_charges_mean.plot(kind='bar', color=colors, edgecolor='black')
-ax_monthly_charges_mean.set_xticklabels(monthly_charges_mean['Type'], rotation=45)
+# ax_monthly_charges_mean = monthly_charges_mean.plot(kind='bar', color=colors, edgecolor='black')
+# ax_monthly_charges_mean.set_xticklabels(monthly_charges_mean['Type'], rotation=45)
 
-# Agregar título y etiquetas
-plt.title('Promedio de cargos mensuales segun tipo de contrato y cancelacion')
-plt.xlabel('Tipo de Contrato')
-plt.ylabel('Promedio de cargos mensuales')
-plt.legend(labels=['In', 'Out'])
-plt.show()
+# # Agregar título y etiquetas
+# plt.title('Promedio de cargos mensuales segun tipo de contrato y cancelacion')
+# plt.xlabel('Tipo de Contrato')
+# plt.ylabel('Promedio de cargos mensuales')
+# plt.legend(labels=['In', 'Out'])
+# plt.show()
 
-# En promedio, los cargos mensuales son mas altos en los contratos que han cancelado el servicio
+
+## En promedio, los cargos mensuales son mas altos en los contratos que han cancelado el servicio
 
 
 """ EVALUAR EL SERVICIO DE INTERNET Y LA TASA DE CANCELACION """
@@ -157,16 +158,16 @@ internet_churn_rate = group_service(full_data, 'InternetService')
 
 """ Grafico: Tasa de cancelacion según tipo de internet """
 #visualizar tasa de cancelacion en internet_service
-ax_internet_churn_rate = internet_churn_rate.plot(kind='bar', legend=False, edgecolor='black')
-ax_internet_churn_rate.set_xticklabels(internet_churn_rate['InternetService'], rotation=45)
+# ax_internet_churn_rate = internet_churn_rate.plot(kind='bar', legend=False, edgecolor='black')
+# ax_internet_churn_rate.set_xticklabels(internet_churn_rate['InternetService'], rotation=45)
 
-# Agregar título y etiquetas
-plt.title('Tasa de cancelacion según tipo de internet')
-plt.xlabel('Servicio de internet')
-plt.ylabel('Tasa de cancelacion')
-plt.show()
+# # Agregar título y etiquetas
+# plt.title('Tasa de cancelacion según tipo de internet')
+# plt.xlabel('Servicio de internet')
+# plt.ylabel('Tasa de cancelacion')
+# plt.show()
 
-# La tasa de cancelacion es mas alta entre los clientes con internet de fibra optica y mas baja entre los que no tienen servicio de internet
+## La tasa de cancelacion es mas alta entre los clientes con internet de fibra optica y mas baja entre los que no tienen servicio de internet
 
 
 """ EVALUAR TASA DE CANCELACION SEGUN OTROS SERVICIOS DERIVADOS DE INTERNET """
