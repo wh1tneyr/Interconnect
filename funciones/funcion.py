@@ -70,7 +70,7 @@ def group_service(full_data, column):
 
 
 
-""" Funcion para agrupar por genero e informacion personal y contar las cancelaciones   """  
+""" Funcion para agrupar por genero e informacion personal y contar las cancelaciones para personas que cumplen la condicion descrita """  
 
 def group_gender_churn(full_data, gender_column, column):
     # Agrupar y contar los valores de 'Churn'
@@ -78,6 +78,27 @@ def group_gender_churn(full_data, gender_column, column):
 
     # Conservar solo la clase negativa presentes  
     data = values[(values[column] == 1) & (values['Churn'] == 0)].drop([column,'Churn'], axis=1).reset_index(drop=True)
+
+    if len(data) < 2:
+        raise ValueError("No hay suficientes datos para las clases 'female' y 'male'.")
+
+    # Asignar 'female' y 'male' basados en la condición
+    female = data.iloc[0]
+    male = data.iloc[1]
+
+    # Construir el DataFrame resultante
+    result_df = pd.DataFrame({'condition': [column], 'female': [female['count']], 'male': [male['count']]})
+    return result_df
+
+
+""" Funcion para agrupar por genero e informacion personal y contar las cancelaciones para personas que NO cumplen la condicion descrita """ 
+
+def group_gender_churn_no_condition(full_data, gender_column, column):
+    # Agrupar y contar los valores de 'Churn'
+    values = full_data.groupby([gender_column, column])['Churn'].value_counts().reset_index(name='count')
+
+    # Conservar solo la clase negativa presentes  
+    data = values[(values[column] == 0) & (values['Churn'] == 0)].drop([column,'Churn'], axis=1).reset_index(drop=True)
 
     if len(data) < 2:
         raise ValueError("No hay suficientes datos para las clases 'female' y 'male'.")
