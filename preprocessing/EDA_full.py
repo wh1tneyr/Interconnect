@@ -254,12 +254,16 @@ no_dependents_churn = group_gender_churn_no_condition(personal_encoded, 'gender'
 
 data_personal = [
     {'condition': 'senior_citizen', 'female': senior_churn['female'].iloc[0], 'male': senior_churn['male'].iloc[0]},
+    {'condition': 'young_citizen', 'female': young_churn['female'].iloc[0], 'male': young_churn['male'].iloc[0]},
     {'condition': 'partner', 'female': partner_churn['female'].iloc[0], 'male': partner_churn['male'].iloc[0]},
-    {'condition': 'dependents', 'female': dependents_churn['female'].iloc[0], 'male': dependents_churn['male'].iloc[0]}
+    {'condition': 'single', 'female': single_churn['female'].iloc[0], 'male': single_churn['male'].iloc[0]},
+    {'condition': 'dependents', 'female': dependents_churn['female'].iloc[0], 'male': dependents_churn['male'].iloc[0]},
+    {'condition': 'no_dependents', 'female': no_dependents_churn['female'].iloc[0], 'male': no_dependents_churn['male'].iloc[0]}
 ]
 
 personal_info_churn = pd.DataFrame(data_personal)
-personal_info_churn = personal_info_churn.sort_values(by='female', ascending=False)
+
+
 
 """ Grafico: Tasa de cancelacion segun genero e informacion personal """
 
