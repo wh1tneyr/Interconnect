@@ -282,4 +282,11 @@ personal_info_churn = pd.DataFrame(data_personal)
 
 
 
+""" TASA DE CANCELACION SEGUN SI EL CLIENTE TIENE MULTIPLES LINEAS TELEFONICAS """
+
+# agrupar segun genero en clientes con multiples lineas
+multiple_lines_churn = group_gender_churn(personal_encoded, 'gender', 'MultipleLines')
+
+# agrupar segun genero en clientes SIN multiples lineas
+no_multiple_lines_churn = group_gender_churn_no_condition(personal_encoded, 'gender', 'MultipleLines')
 
