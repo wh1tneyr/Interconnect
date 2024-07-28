@@ -205,18 +205,19 @@ data_services = [
 
 internet_services_churn = pd.DataFrame(data_services)  
 
+internet_services_churn = internet_services_churn.sort_values(by='yes', ascending=False)
 
 """ Grafico: Tasa de cancelacion en los servicios derivados de internet """
 
 # visualizar tasa de cancelacion en servicios derivados de internet
-colors = ['blue', 'orange']
+# colors = ['blue', 'orange']
 
-ax_internet_services_churn = internet_services_churn.plot(kind='bar', color=colors, edgecolor='black')
-ax_internet_services_churn.set_xticklabels(internet_services_churn['type'], rotation=45)
+# ax_internet_services_churn = internet_services_churn.plot(kind='bar', color=colors, edgecolor='black')
+# ax_internet_services_churn.set_xticklabels(internet_services_churn['type'], rotation=45)
 
-# # Agregar título y etiquetas
-plt.title('Tasa de cancelacion en servicios derivados de internet')
-plt.xlabel('tipo de servicio')
-plt.ylabel('Tasa de cancelacion segun si tenian el servicio o no')
-plt.legend(labels=['Si', 'No'])
-plt.show()
+# # # Agregar título y etiquetas
+# plt.title('Tasa de cancelacion en servicios derivados de internet')
+# plt.xlabel('tipo de servicio')
+# plt.ylabel('Tasa de cancelacion segun si tenian el servicio o no')
+# plt.legend(labels=['Si', 'No'])
+# plt.show()
