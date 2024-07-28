@@ -268,17 +268,17 @@ personal_info_churn = pd.DataFrame(data_personal)
 """ Grafico: Tasa de cancelacion segun genero e informacion personal """
 
 # visualizar tasa de cancelacion segun informacion personal
-colors = ['blue', 'orange']
+# colors = ['blue', 'orange']
 
-ax_personal_info_churn = personal_info_churn.plot(kind='bar', color=colors, edgecolor='black')
-ax_personal_info_churn.set_xticklabels(personal_info_churn['condition'], rotation=45)
+# ax_personal_info_churn = personal_info_churn.plot(kind='bar', color=colors, edgecolor='black')
+# ax_personal_info_churn.set_xticklabels(personal_info_churn['condition'], rotation=45)
 
-# # # Agregar título y etiquetas
-plt.title('Tasa de cancelacion segun genero e informacion personal')
-plt.xlabel('Condicion')
-plt.ylabel('Tasa de cancelacion segun condicion de informacion personal')
-plt.legend(labels=['Mujer', 'Hombre'])
-plt.show()
+# # # # Agregar título y etiquetas
+# plt.title('Tasa de cancelacion segun genero e informacion personal')
+# plt.xlabel('Condicion')
+# plt.ylabel('Tasa de cancelacion segun condicion de informacion personal')
+# plt.legend(labels=['Mujer', 'Hombre'])
+# plt.show()
 
 
 
