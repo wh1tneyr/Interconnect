@@ -242,3 +242,14 @@ senior_churn = group_gender_churn(personal_encoded, 'gender', 'SeniorCitizen')
 partner_churn = group_gender_churn(personal_encoded, 'gender', 'Partner')
 dependents_churn = group_gender_churn(personal_encoded, 'gender', 'Dependents')
 multiple_lines_churn = group_gender_churn(personal_encoded, 'gender', 'MultipleLines')
+
+
+# crear un solo df para la cancelacion de contratos segun informacion personal
+
+data_personal = [
+    {'condition': 'senior_citizen', 'female': senior_churn['female'].iloc[0], 'male': senior_churn['male'].iloc[0]},
+    {'condition': 'partner', 'female': partner_churn['female'].iloc[0], 'male': partner_churn['male'].iloc[0]},
+    {'condition': 'dependents', 'female': dependents_churn['female'].iloc[0], 'male': dependents_churn['male'].iloc[0]}
+]
+
+personal_info_churn = pd.DataFrame(data_personal)
