@@ -2,10 +2,12 @@ import pandas as pd
 from sklearn.preprocessing import StandardScaler, OrdinalEncoder
 
 
+
 """ Funcion para leer archivos csv """
 def read_csv(path):
     data = pd.read_csv(path)
     return data
+
 
 
 """ Funcion para leer archivos parquet """
@@ -14,10 +16,12 @@ def read_parquet(path):
     return data
 
 
+
 """ Funcion para cambiar a formato fecha """
 def to_date_time(data):
     data = pd.to_datetime(data, format='%Y-%m-%d')
     return data
+
 
 
 """ Funcion para codificar caracteristicas categoricas """
@@ -25,6 +29,7 @@ def encoder(data):
     encoder = OrdinalEncoder()
     data_encoded = pd.DataFrame(encoder.fit_transform(data), columns=data.columns)
     return data_encoded
+    
     
     
 """ Funcion para escalar caracteristicas numericas """
@@ -40,6 +45,7 @@ def parquet(data, path):
     index=False
     return data.to_parquet(path, engine=engine, index=index)
     
+ 
  
 """ Funcion para agrupar por servicio derivado de internet y contar las cancelaciones   """   
 
@@ -59,4 +65,26 @@ def group_service(full_data, column):
 
     # Construir el DataFrame resultante
     result_df = pd.DataFrame({'type': [column], 'yes': [yes['count']], 'no': [no['count']]})
+    return result_df
+
+
+
+""" Funcion para agrupar por genero e informacion personal y contar las cancelaciones   """  
+
+def group_gender_churn(full_data, gender_column, column):
+    # Agrupar y contar los valores de 'Churn'
+    values = full_data.groupby([gender_column, column])['Churn'].value_counts().reset_index(name='count')
+
+    # Conservar solo la clase negativa presentes  
+    data = values[(values[column] == 1) & (values['Churn'] == 0)].drop([column,'Churn'], axis=1).reset_index(drop=True)
+
+    if len(data) < 2:
+        raise ValueError("No hay suficientes datos para las clases 'female' y 'male'.")
+
+    # Asignar 'female' y 'male' basados en la condición
+    female = data.iloc[0]
+    male = data.iloc[1]
+
+    # Construir el DataFrame resultante
+    result_df = pd.DataFrame({'condition': [column], 'female': [female['count']], 'male': [male['count']]})
     return result_df
