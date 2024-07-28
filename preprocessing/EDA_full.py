@@ -315,3 +315,11 @@ MultipleLines_churn = pd.DataFrame(data_multiple_lines)
 # plt.ylabel('Tasa de cancelacion segun genero')
 # plt.legend(labels=['Mujer', 'Hombre'])
 # plt.show()
+
+
+""" TASA DE CANCELACION SEGUN GENERO """
+
+gender_churn = full_data.groupby('gender')['Churn'].value_counts().reset_index(name='count')
+
+gender_churn_rate = gender_churn[gender_churn['Churn']==0].drop(['Churn'], axis=1).reset_index(drop=True)
+
