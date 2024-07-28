@@ -94,7 +94,8 @@ out_.columns = ['Type', 'Out']
 type_churn_count = in_.merge(out_, on='Type')
 
 
-# visualizar el conteo de churn por tipo de contrato
+""" Grafico: tasa de cancelación por tipo de contrato"""
+
 #crear grafico de barras
 colors = ['blue', 'orange', ]
 ax_type_churn_count = type_churn_count.plot(kind='bar', color=colors, edgecolor='black')
@@ -130,7 +131,7 @@ out_.columns = ['Type', 'Out']
 
 monthly_charges_mean = in_.merge(out_, on='Type')
 
-
+""" Grafico: promedio de cargos mensuales segun tipo de contrato y cancelacion"""
 # visualizar los montos mensuales
 # crear grafico de barras 
 colors = ['blue', 'orange']
@@ -151,15 +152,10 @@ plt.show()
 """ EVALUAR EL SERVICIO DE INTERNET Y LA TASA DE CANCELACION """
 
 # agrupar por internet 
-internet_churn = full_data.groupby('InternetService')['Churn'].value_counts()
-
-# convertir el indice en columnas 
-internet_churn  = internet_churn.reset_index(name='Count')
-
-# eliminar la clase positiva y evaluar la tasa de cancelacion
-internet_churn_rate = internet_churn[internet_churn['Churn'] == 0].drop(['Churn'], axis=1).reset_index(drop=True)
+internet_churn_rate = group_service(full_data, 'InternetService')
 
 
+""" Grafico: Tasa de cancelacion según tipo de internet """
 #visualizar tasa de cancelacion en internet_service
 ax_internet_churn_rate = internet_churn_rate.plot(kind='bar', legend=False, edgecolor='black')
 ax_internet_churn_rate.set_xticklabels(internet_churn_rate['InternetService'], rotation=45)
