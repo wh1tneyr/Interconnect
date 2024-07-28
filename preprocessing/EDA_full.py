@@ -298,3 +298,20 @@ data_multiple_lines = [
 ]
 
 MultipleLines_churn = pd.DataFrame(data_multiple_lines)
+
+
+
+""" Grafico: cancelacion para clientes con multiples lineas segun genero """
+
+# visualizar tasa de cancelacion segun multiples lineas
+# colors = ['blue', 'orange']
+
+# ax_multiple_lines_churn = MultipleLines_churn.plot(kind='bar', color=colors, edgecolor='black')
+# ax_multiple_lines_churn .set_xticklabels(MultipleLines_churn['multiple_lines'], rotation=45)
+
+# # # Agregar título y etiquetas
+# plt.title('Tasa de cancelacion para clientes con multiples lineas segun genero')
+# plt.xlabel('Multiples lineas telefonicas')
+# plt.ylabel('Tasa de cancelacion segun genero')
+# plt.legend(labels=['Mujer', 'Hombre'])
+# plt.show()
