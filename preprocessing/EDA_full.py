@@ -290,3 +290,11 @@ multiple_lines_churn = group_gender_churn(personal_encoded, 'gender', 'MultipleL
 # agrupar segun genero en clientes SIN multiples lineas
 no_multiple_lines_churn = group_gender_churn_no_condition(personal_encoded, 'gender', 'MultipleLines')
 
+
+# crear un solo df para clientes con y sin multiples lineas
+data_multiple_lines = [
+    {'multiple_lines':'yes', 'female':multiple_lines_churn['female'].loc[0], 'male':multiple_lines_churn['male'].loc[0]},
+    {'multiple_lines':'no', 'female':no_multiple_lines_churn['female'].loc[0], 'male':no_multiple_lines_churn['male'].loc[0]}
+]
+
+MultipleLines_churn = pd.DataFrame(data_multiple_lines)
