@@ -153,8 +153,16 @@ monthly_charges_mean = in_.merge(out_, on='Type')
 """ EVALUAR EL SERVICIO DE INTERNET Y LA TASA DE CANCELACION """
 
 # agrupar por internet 
-internet_churn_rate = group_service(full_data, 'InternetService')
+internet_churn = full_data.groupby('InternetService')['Churn'].value_counts()	
 
+# convertir el indice en columnas 	
+internet_churn  = internet_churn.reset_index(name='Count')	
+
+# eliminar la clase positiva y evaluar la tasa de cancelacion	
+internet_churn_rate = internet_churn[internet_churn['Churn'] == 0].drop(['Churn'], axis=1).reset_index(drop=True)
+
+# organizar los valores de 'count'
+internet_churn_rate = internet_churn_rate.sort_values(by='Count', ascending=False)
 
 """ Grafico: Tasa de cancelacion según tipo de internet """
 #visualizar tasa de cancelacion en internet_service
