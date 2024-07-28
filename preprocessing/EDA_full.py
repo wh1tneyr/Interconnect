@@ -172,6 +172,11 @@ internet_churn_rate = group_service(full_data, 'InternetService')
 
 """ EVALUAR TASA DE CANCELACION SEGUN OTROS SERVICIOS DERIVADOS DE INTERNET """
 
-services = ['OnlineSecurity', 'OnlineBackup', 'DeviceProtection', 'TechSupport', 'StreamingTV', 'StreamingMovies']
+online_security_churn = group_service(full_data, 'OnlineSecurity')
+online_backup_churn = group_service(full_data, 'OnlineBackup')
+device_prot_churn = group_service(full_data, 'DeviceProtection')
+tech_support_churn = group_service(full_data, 'TechSupport')
+s_tv_churn = group_service(full_data, 'StreamingTV')
+s_movies_churn = group_service(full_data, 'StreamingMovies')
 
 
