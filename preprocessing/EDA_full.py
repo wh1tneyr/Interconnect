@@ -180,6 +180,9 @@ internet_churn_rate = internet_churn_rate.sort_values(by='Count', ascending=Fals
 
 """ EVALUAR TASA DE CANCELACION SEGUN OTROS SERVICIOS DERIVADOS DE INTERNET """
 
+# crear un df para cada servicio de internet, filtrando unicamente la clase negativa,
+# es decir, los contratos cancelados 
+
 online_security_churn = group_service(full_data, 'OnlineSecurity')
 online_backup_churn = group_service(full_data, 'OnlineBackup')
 device_prot_churn = group_service(full_data, 'DeviceProtection')
@@ -188,3 +191,17 @@ s_tv_churn = group_service(full_data, 'StreamingTV')
 s_movies_churn = group_service(full_data, 'StreamingMovies')
 
 
+# crear un solo df para la cancelacion de contratos con servicios derivados de internet 
+
+data_services = [
+    {'type': 'online_security', 'yes': online_security_churn['yes'].iloc[0], 'no': online_security_churn['no'].iloc[0]},
+    {'type': 'online_backup', 'yes': online_backup_churn['yes'].iloc[0], 'no': online_backup_churn['no'].iloc[0]},
+    {'type': 'device_protection', 'yes': device_prot_churn['yes'].iloc[0], 'no': device_prot_churn['no'].iloc[0]},
+    {'type': 'tech_support', 'yes': tech_support_churn['yes'].iloc[0], 'no': tech_support_churn['no'].iloc[0]},
+    {'type': 'streaming_tv', 'yes': s_tv_churn['yes'].iloc[0], 'no': s_tv_churn['no'].iloc[0]},
+    {'type': 'streaming_movies', 'yes': s_movies_churn['yes'].iloc[0], 'no': s_movies_churn['no'].iloc[0]}
+]
+
+
+internet_services_churn = pd.DataFrame(data_services)  
+                 
