@@ -2,7 +2,7 @@ import pandas as pd
 import os, sys
 sys.path.append(os.getcwd())
 
-from funciones.funcion import read_csv, read_parquet, parquet, group_service
+from funciones.funcion import read_csv, read_parquet, parquet, group_service, group_gender_churn, encoder
 
 
 import matplotlib.pyplot as plt
@@ -221,3 +221,24 @@ internet_services_churn = internet_services_churn.sort_values(by='yes', ascendin
 # plt.ylabel('Tasa de cancelacion segun si tenian el servicio o no')
 # plt.legend(labels=['Si', 'No'])
 # plt.show()
+
+
+""" EVALUAR TASA DE CANCELACION SEGUN GENERO E INFORMACION PERSONAL """
+
+# filtrar la info personal de los clientes y la cancelacion
+data_personal_info = full_data[['customerID', 'gender', 'SeniorCitizen', 'Partner', 'Dependents', 'MultipleLines', 'Churn']]
+
+# codificar variables categoricas en un nuevo df 
+personal_encoded = data_personal_info[['customerID', 'gender','SeniorCitizen', 'Churn']]
+
+encoded = encoder(data_personal_info[['Partner', 'Dependents', 'MultipleLines']])
+
+# unir las nuevas variables codificadas al df personal_encoded
+personal_encoded[['Partner', 'Dependents', 'MultipleLines']] = encoded 
+
+
+# agrupar cancelaciones segun condicion y genero 
+senior_churn = group_gender_churn(personal_encoded, 'gender', 'SeniorCitizen')
+partner_churn = group_gender_churn(personal_encoded, 'gender', 'Partner')
+dependents_churn = group_gender_churn(personal_encoded, 'gender', 'Dependents')
+multiple_lines_churn = group_gender_churn(personal_encoded, 'gender', 'MultipleLines')
