@@ -28,6 +28,7 @@ def to_date_time(data):
 def encoder(data):
     encoder = OrdinalEncoder()
     data_encoded = pd.DataFrame(encoder.fit_transform(data), columns=data.columns)
+    data_encoded = data_encoded.astype('int')
     return data_encoded
     
     
