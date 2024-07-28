@@ -2,7 +2,7 @@ import pandas as pd
 import os, sys
 sys.path.append(os.getcwd())
 
-from funciones.funcion import read_csv, read_parquet, parquet, group_service, group_gender_churn, encoder
+from funciones.funcion import read_csv, read_parquet, parquet, group_service, group_gender_churn, encoder, group_gender_churn_no_condition
 
 
 import matplotlib.pyplot as plt
@@ -237,11 +237,17 @@ encoded = encoder(data_personal_info[['Partner', 'Dependents', 'MultipleLines']]
 personal_encoded[['Partner', 'Dependents', 'MultipleLines']] = encoded 
 
 
-# agrupar cancelaciones segun condicion y genero 
+# agrupar cancelaciones segun condicion y genero cuando se cumple la condicion
 senior_churn = group_gender_churn(personal_encoded, 'gender', 'SeniorCitizen')
 partner_churn = group_gender_churn(personal_encoded, 'gender', 'Partner')
 dependents_churn = group_gender_churn(personal_encoded, 'gender', 'Dependents')
 multiple_lines_churn = group_gender_churn(personal_encoded, 'gender', 'MultipleLines')
+
+
+# agrupar cancelaciones segun condicion y genero cuando NO se cumple la condicion
+young_churn = group_gender_churn_no_condition(personal_encoded, 'gender', 'SeniorCitizen')
+single_churn = group_gender_churn_no_condition(personal_encoded, 'gender', 'Partner')
+no_dependents_churn = group_gender_churn_no_condition(personal_encoded, 'gender', 'Dependents')
 
 
 # crear un solo df para la cancelacion de contratos segun informacion personal
@@ -253,3 +259,23 @@ data_personal = [
 ]
 
 personal_info_churn = pd.DataFrame(data_personal)
+personal_info_churn = personal_info_churn.sort_values(by='female', ascending=False)
+
+""" Grafico: Tasa de cancelacion segun genero e informacion personal """
+
+# visualizar tasa de cancelacion segun informacion personal
+colors = ['blue', 'orange']
+
+ax_personal_info_churn = personal_info_churn.plot(kind='bar', color=colors, edgecolor='black')
+ax_personal_info_churn.set_xticklabels(personal_info_churn['condition'], rotation=45)
+
+# # # Agregar título y etiquetas
+plt.title('Tasa de cancelacion segun genero e informacion personal')
+plt.xlabel('Condicion')
+plt.ylabel('Tasa de cancelacion segun condicion de informacion personal')
+plt.legend(labels=['Mujer', 'Hombre'])
+plt.show()
+
+
+
+
