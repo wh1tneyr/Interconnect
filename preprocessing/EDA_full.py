@@ -303,7 +303,7 @@ MultipleLines_churn = pd.DataFrame(data_multiple_lines)
 
 """ Grafico: cancelacion para clientes con multiples lineas segun genero """
 
-# visualizar tasa de cancelacion segun multiples lineas
+# # visualizar tasa de cancelacion segun multiples lineas
 # colors = ['blue', 'orange']
 
 # ax_multiple_lines_churn = MultipleLines_churn.plot(kind='bar', color=colors, edgecolor='black')
@@ -319,7 +319,20 @@ MultipleLines_churn = pd.DataFrame(data_multiple_lines)
 
 """ TASA DE CANCELACION SEGUN GENERO """
 
+# agrupar por genero y contar cancelaciones
 gender_churn = full_data.groupby('gender')['Churn'].value_counts().reset_index(name='count')
 
 gender_churn_rate = gender_churn[gender_churn['Churn']==0].drop(['Churn'], axis=1).reset_index(drop=True)
 
+
+""" Grafico: cancelaciones segun genero """
+ 
+# # # visualizar tasa de cancelacion segun genero
+# ax_gender_churn = gender_churn_rate.plot(kind='bar', edgecolor='black', legend=False)
+# ax_gender_churn.set_xticklabels(gender_churn_rate['gender'], rotation=45)
+
+# # # Agregar título y etiquetas
+# plt.title('Tasa de cancelación segun género')
+# plt.xlabel('Género')
+# plt.ylabel('Tasa de cancelación')
+# plt.show()
