@@ -44,9 +44,19 @@ def parquet(data, path):
 """ Funcion para agrupar por servicio derivado de internet y contar las cancelaciones   """   
 
 def group_service(full_data, column):
-    values = full_data.groupby(column)['Churn'].value_counts()
-    values = values.reset_index(name='count')
-    #conservar solo la clase negativa 
+    # Agrupar y contar los valores de 'Churn'
+    values = full_data.groupby(column)['Churn'].value_counts().reset_index(name='count')
+
+    # Conservar solo la clase negativa
     data = values[values['Churn'] == 0].drop(['Churn'], axis=1).reset_index(drop=True)
-    data = data.sort_values(by='count', ascending=False)
-    return data
+
+    if len(data) < 2:
+        raise ValueError("No hay suficientes datos para las clases 'yes' y 'no'.")
+
+    # Asignar 'yes' y 'no' basados en la condición
+    yes = data.iloc[0]
+    no = data.iloc[1]
+
+    # Construir el DataFrame resultante
+    result_df = pd.DataFrame({'type': [column], 'yes': [yes['count']], 'no': [no['count']]})
+    return result_df
