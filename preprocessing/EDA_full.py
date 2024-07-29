@@ -173,8 +173,20 @@ out_2.columns = ['Type', 'Out']
 total_charges_mean = in_2.merge(out_2, on='Type')
 
 
+""" Grafico: promedio de cargos totales segun tipo de contrato y cancelacion"""
 
+# # crear grafico de barras 
+# colors = ['blue', 'orange']
 
+# ax_total_charges_mean = total_charges_mean.plot(kind='bar', color=colors, edgecolor='black')
+# ax_total_charges_mean.set_xticklabels(total_charges_mean['Type'], rotation=45)
+
+# # # Agregar título y etiquetas
+# plt.title('Promedio de cargos totales segun tipo de contrato y cancelación')
+# plt.xlabel('Tipo de Contrato')
+# plt.ylabel('Promedio de cargos totales')
+# plt.legend(labels=['In', 'Out'])
+# plt.show()
 
 
 
