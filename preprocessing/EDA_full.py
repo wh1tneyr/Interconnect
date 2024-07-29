@@ -150,6 +150,34 @@ monthly_charges_mean = in_.merge(out_, on='Type')
 ## En promedio, los cargos mensuales son mas altos en los contratos que han cancelado el servicio
 
 
+
+""" EVALUAR LOS MONTOS TOTALES SEGUN TIPO DE CONTRATO """
+
+# agrupar por tipo de contrato  churn y ver el promedio de los cargos mensuales
+total_type_churn = full_data.groupby(['Type', 'Churn'])['TotalCharges'].mean()
+
+
+# reindexar para acceder a los montos 
+total_type_churn = total_type_churn.reset_index(name='total_charges')
+
+
+# filtrar por contratos cancelados y vigentes
+in_2 = total_type_churn[total_type_churn['Churn'] == 1].reset_index(drop=True)
+in_2 = in_2.drop(['Churn'], axis=1).reset_index(drop=True)
+in_2.columns = ['Type', 'In']
+
+out_2 = total_type_churn[total_type_churn['Churn'] == 0].reset_index(drop=True)
+out_2 = out_2.drop(['Churn'], axis=1).reset_index(drop=True)
+out_2.columns = ['Type', 'Out']
+
+total_charges_mean = in_2.merge(out_2, on='Type')
+
+
+
+
+
+
+
 """ EVALUAR EL SERVICIO DE INTERNET Y LA TASA DE CANCELACION """
 
 # agrupar por internet 
