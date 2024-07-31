@@ -68,6 +68,23 @@ full_data['Churn'].value_counts()
 
 # el dataset tiene datos registrados desde el primero de octubre del 2013 hasta el 01 de enero del 2020
 
+""" FECHAS DE CANCELACION """
+
+# # filtrar el df por contratos cancelados
+churn_contracts = full_data[full_data['Churn']==0]
+
+# ver las fechas minima y maxima de las cancelaciones 
+churn_contracts['EndDate'].min()
+churn_contracts['EndDate'].max()
+
+churn_date = churn_contracts.groupby('EndDate')['Type'].value_counts()
+
+# Los contratos se han estado cancelado desde octubre del 2019 hasta el enero del 2020, ultima fecha de registro en el conjunto de datos. Puede que en estos cuatro meses haya habido algun incremento en las tarifas.
+
+# # Analizar tarifas dentro de el periodo de 2019-10-01 al 2020-01-01 en full data 
+
+
+
 
 """ EVALUAR TASA DE CANCELACION SEGUN EL TIPO DE CONTRATO """
 
