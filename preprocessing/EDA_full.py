@@ -91,11 +91,19 @@ churn_contracts['Year'] = churn_contracts['BeginDate'].dt.year
 churn_contract_mean = churn_contracts.groupby(['Year', 'Type'])['MonthlyCharges'].mean().reset_index(name='mean')
 
 # # comparar el promedio de pagos mensuales segun el tipo de contrato a traves de los años
-month_to_month_mean_churn = churn_contract_mean[churn_contract_mean['Type'] == 'Month-to-month']
-one_year = churn_contract_mean[churn_contract_mean['Type'] == 'One year']
-two_years = churn_contract_mean[churn_contract_mean['Type'] == 'Two year']
+m_t_m_monthly_mean_churn = churn_contract_mean[churn_contract_mean['Type'] == 'Month-to-month']
+one_year_monthly_mean_churn = churn_contract_mean[churn_contract_mean['Type'] == 'One year']
+two_year_monthly_mean_churn = churn_contract_mean[churn_contract_mean['Type'] == 'Two year']
 
 # En los tres tipos de contratos del dataset se observa una tendencia de disminucion en los montos mesuales que pagan los clientes 
+
+churn_contract_total_mean = churn_contracts.groupby(['Year', 'Type'])['TotalCharges'].mean().reset_index(name='mean')
+
+m_t_m_total_mean_churn = churn_contract_total_mean[churn_contract_total_mean['Type'] == 'Month-to-month']
+one_year_total_mena_churn = churn_contract_total_mean[churn_contract_total_mean['Type'] == 'One year']
+two_year_total_mean_churn = churn_contract_total_mean[churn_contract_total_mean['Type'] == 'Two year']
+
+# En los montos totales de los clientes se observa la misma tendencia de disminuacion a traves de los años
 
 """ EVALUAR TASA DE CANCELACION SEGUN EL TIPO DE CONTRATO """
 
