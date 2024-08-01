@@ -38,8 +38,5 @@ merge_1 = data_rest.merge(data_encoded, on='customerID')
 full_data_scaled_encoded = merge_1.merge(data_scaled, on='customerID')
 
 
-# # guardar el df escalado y codificado en un parquet 
-parquet(full_data_scaled_encoded, 'files/datasets/final_provider/full_data_scaled.parquet')
-
-
-full_data_scaled_encoded.to_parquet('files/datasets/final_provider/prueba.parquet', index=False)
+# # guardar el df escalado y codificado en un parquet
+parquet(full_data_scaled_encoded, 'files/datasets/final_provider/prueba.parquet')
