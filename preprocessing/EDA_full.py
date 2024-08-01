@@ -81,10 +81,21 @@ churn_date = churn_contracts.groupby('EndDate')['Type'].value_counts()
 
 # Los contratos se han estado cancelado desde octubre del 2019 hasta el enero del 2020, ultima fecha de registro en el conjunto de datos. Puede que en estos cuatro meses haya habido algun incremento en las tarifas.
 
-# # Analizar tarifas dentro de el periodo de 2019-10-01 al 2020-01-01 en full data 
+# # Analizar tarifas mesuales a traves de los años 2013 a 2020
 
+# extraer el año de los contratos
+churn_contracts['Year'] = churn_contracts['BeginDate'].dt.year
+           
+# # agrupar por año y tipo de contrato
+# # calcular el promedio de los montos mensuales
+churn_contract_mean = churn_contracts.groupby(['Year', 'Type'])['MonthlyCharges'].mean().reset_index(name='mean')
 
+# # comparar el promedio de pagos mensuales segun el tipo de contrato a traves de los años
+month_to_month_mean_churn = churn_contract_mean[churn_contract_mean['Type'] == 'Month-to-month']
+one_year = churn_contract_mean[churn_contract_mean['Type'] == 'One year']
+two_years = churn_contract_mean[churn_contract_mean['Type'] == 'Two year']
 
+# En los tres tipos de contratos del dataset se observa una tendencia de disminucion en los montos mesuales que pagan los clientes 
 
 """ EVALUAR TASA DE CANCELACION SEGUN EL TIPO DE CONTRATO """
 
