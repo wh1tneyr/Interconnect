@@ -4,6 +4,11 @@ sys.path.append(os.getcwd())
 
 from funciones.funcion import read_parquet, parquet
 
+from sklearn.ensemble import RandomForestClassifier
+from sklearn.model_selection import GridSearchCV
+
+
+""" LEER CONJUNTOS DE ENTRENAMIENTO  """
 
 # leer conjunto de entrenamiento
 data_train = read_parquet('files/datasets/final_provider/data_train.parquet')
@@ -25,3 +30,9 @@ data_valid = read_parquet('files/datasets/final_provider/data_valid.parquet')
 # definir caracteristicas y objetivo
 valid_features = data_valid.drop(['Churn'], axis=1)
 valid_target = data_valid['Churn']
+
+
+
+""" BOSQUE ALEATORIO  """
+
+rf_clf = RandomForestClassifier(random_state=345)
