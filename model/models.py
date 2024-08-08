@@ -6,6 +6,7 @@ from funciones.funcion import read_parquet, parquet
 
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.model_selection import GridSearchCV
+from sklearn.metrics import roc_auc_score, accuracy_score
 
 
 """ LEER CONJUNTOS DE ENTRENAMIENTO  """
@@ -42,23 +43,37 @@ valid_target = data_valid['Churn']
 
 """ BOSQUE ALEATORIO  """
 
-# crear un modelo de bosque aleatorio
-rf_clf_model = RandomForestClassifier(random_state=345)
+# # crear un modelo de bosque aleatorio
+rf_clf_model = RandomForestClassifier(random_state=345,
+                                      class_weight='balanced',
+                                      criterion='entropy',
+                                      max_depth=15,
+                                      max_features=6,
+                                      min_samples_split=2,
+                                      n_estimators=100
+                                      )
 
-# establecer hiperparametros para el buscador
-params = {
-    'n_estimators' : [20, 60, 100],
-    'max_depth' : [10, 15, 23],
-    'min_samples_split' : [2, 3],
-    'max_features' : [2, 4, 6],
-    'class_weight' : ['balanced', 'balanced_subsample'],
-    'criterion' : ['gini', 'entropy', 'log_loss']
-} 
+# # establecer hiperparametros para el buscador
+
+# params = {
+#     'n_estimators' : [20, 60, 100],
+#     'max_depth' : [10, 15, 23],
+#     'min_samples_split' : [2, 3],
+#     'max_features' : [2, 4, 6],
+#     'class_weight' : ['balanced', 'balanced_subsample'],
+#     'criterion' : ['gini', 'entropy', 'log_loss']
+# } 
  
-# buscar los mejores hipeparametros 
-grid = GridSearchCV(estimator=rf_clf_model, param_grid=params, cv=5)
+# # # buscar los mejores hipeparametros 
 
-grid.fit(train_features, train_target)
+# grid = GridSearchCV(estimator=rf_clf_model, param_grid=params, cv=5)
 
-#mostrar los mejores hiperparámetros del modelo
-grid.best_params_
+# grid.fit(train_features, train_target)
+
+# # # mostrar los mejores hiperparámetros del modelo
+
+# grid.best_params_
+
+
+# mejores hiperparametros :
+# # {'class_weight': 'balanced', 'criterion': 'entropy', 'max_depth': 15, 'max_features': 6, 'min_samples_split': 2, 'n_estimators': 100}
