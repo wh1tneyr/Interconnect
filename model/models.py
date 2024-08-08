@@ -75,5 +75,12 @@ rf_clf_model = RandomForestClassifier(random_state=345,
 # grid.best_params_
 
 
-# mejores hiperparametros :
-# # {'class_weight': 'balanced', 'criterion': 'entropy', 'max_depth': 15, 'max_features': 6, 'min_samples_split': 2, 'n_estimators': 100}
+# # mejores hiperparametros :
+# # # {'class_weight': 'balanced', 'criterion': 'entropy', 'max_depth': 15, 'max_features': 6, 'min_samples_split': 2, 'n_estimators': 100}
+
+""" Entrenar el bosque aleatorio """
+
+rf_clf_model.fit(train_features, train_target)
+
+# predecir la probabilidad de clases 
+rf_clf_proba = rf_clf_model.predict_proba(train_features)
