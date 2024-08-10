@@ -91,3 +91,8 @@ rf_clf_proba_positive = rf_clf_proba[:, 1]
 # # evaluar el modelo con auc_roc
 roc_auc_score(train_target, rf_clf_proba_positive)
 
+# realizar predicciones con el bosque aleatorio
+rf_clf_predict = rf_clf_model.predict(train_features)
+
+# evaluar el modelo con metrica de exactitud
+accuracy_score(train_target, rf_clf_predict)
