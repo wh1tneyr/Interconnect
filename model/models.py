@@ -2,7 +2,7 @@ import pandas as pd
 import os, sys
 sys.path.append(os.getcwd())
 
-from funciones.funcion import read_parquet, parquet
+from funciones.funcion import read_parquet, parquet, model_eval
 
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.model_selection import GridSearchCV
@@ -44,7 +44,7 @@ valid_target = data_valid['Churn']
 """ BOSQUE ALEATORIO  """
 
 # # crear un modelo de bosque aleatorio
-rf_clf_model = RandomForestClassifier(random_state=345,
+rf_model = RandomForestClassifier(random_state=345,
                                       class_weight='balanced',
                                       criterion='entropy',
                                       max_depth=15,
@@ -80,19 +80,12 @@ rf_clf_model = RandomForestClassifier(random_state=345,
 
 """ Entrenar el bosque aleatorio """
 
-rf_clf_model.fit(train_features, train_target)
+rf_model.fit(train_features, train_target)
 
-# # predecir la probabilidad de clases 
-rf_clf_proba = rf_clf_model.predict_proba(train_features)
+# # evaluar el modelo de bosque aleatorio 
 
-# Extraer solo las probabilidades de la clase positiva (clase 1)
-rf_clf_proba_positive = rf_clf_proba[:, 1]
 
-# # evaluar el modelo con auc_roc
-roc_auc_score(train_target, rf_clf_proba_positive)
 
-# realizar predicciones con el bosque aleatorio
-rf_clf_predict = rf_clf_model.predict(train_features)
 
-# evaluar el modelo con metrica de exactitud
-accuracy_score(train_target, rf_clf_predict)
+
+
