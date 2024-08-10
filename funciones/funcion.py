@@ -110,3 +110,25 @@ def group_gender_churn_no_condition(full_data, gender_column, column):
     # Construir el DataFrame resultante
     result_df = pd.DataFrame({'condition': [column], 'female': [female['count']], 'male': [male['count']]})
     return result_df
+
+
+""" Funcion para evaluar los modelos con roc_auc y exactitud  """
+
+def model_eval(model, train_target, train_features):
+    
+    # Hacer predicciones con el modelo
+    predictions = model.predict(train_features)
+    
+    # Predecir la probailidad de clase
+    class_proba = model.predict_proba(train_features)
+    
+    # Extraer solo las probabilidades de la clase positiva (clase 1)
+    class_proba_positive = class_proba[:, 1]
+    
+    # Evaluar el modelo con roc_auc
+    model_auc_roc_score = roc_auc_score(train_target, class_proba_positive)
+    
+    # Evaluar el modelo con accuracy
+    model_accuracy = accuracy_score(train_target, predictions)
+    
+    return model_auc_roc_score, model_accuracy
