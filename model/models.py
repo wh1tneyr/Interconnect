@@ -84,8 +84,10 @@ rf_model.fit(train_features, train_target)
 
 # # evaluar el modelo de bosque aleatorio 
 
+rf_roc_auc_score, rf_accuracy = model_eval(rf_model, train_target, train_features)
 
-
+print('\n Evaluación auc_roc del bosque aleatorio:', rf_roc_auc_score, '\n')
+print('\n Evaluación de exactitud del bosque aleatorio:', rf_accuracy, '\n')
 
 
 
