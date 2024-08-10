@@ -85,8 +85,9 @@ rf_clf_model.fit(train_features, train_target)
 # # predecir la probabilidad de clases 
 rf_clf_proba = rf_clf_model.predict_proba(train_features)
 
-y = train_target.values
+# Extraer solo las probabilidades de la clase positiva (clase 1)
+rf_clf_proba_positive = rf_clf_proba[:, 1]
 
 # # evaluar el modelo con auc_roc
-roc_auc_score(y, rf_clf_proba)
+roc_auc_score(train_target, rf_clf_proba_positive)
 
