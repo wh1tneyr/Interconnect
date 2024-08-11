@@ -1,12 +1,17 @@
+# Librerias 
 import pandas as pd
 import os, sys
 sys.path.append(os.getcwd())
 
+# Funciones 
 from funciones.funcion import read_parquet, parquet, model_eval
-
-from sklearn.ensemble import RandomForestClassifier
-from sklearn.model_selection import GridSearchCV
 from sklearn.metrics import roc_auc_score, accuracy_score
+
+# Modelos 
+from sklearn.model_selection import GridSearchCV
+from sklearn.ensemble import RandomForestClassifier
+from sklearn.tree import DecisionTreeClassifier
+
 
 
 """ LEER CONJUNTOS DE ENTRENAMIENTO  """
@@ -43,7 +48,7 @@ valid_target = data_valid['Churn']
 
 """ BOSQUE ALEATORIO  """
 
-# # crear un modelo de bosque aleatorio
+# Crear un modelo de bosque aleatorio
 rf_model = RandomForestClassifier(random_state=345,
                                       class_weight='balanced',
                                       criterion='entropy',
@@ -53,7 +58,7 @@ rf_model = RandomForestClassifier(random_state=345,
                                       n_estimators=100
                                       )
 
-# # establecer hiperparametros para el buscador
+# Establecer hiperparametros para el buscador
 
 # params = {
 #     'n_estimators' : [20, 60, 100],
@@ -64,13 +69,13 @@ rf_model = RandomForestClassifier(random_state=345,
 #     'criterion' : ['gini', 'entropy', 'log_loss']
 # } 
  
-# # # buscar los mejores hipeparametros 
+# Buscar los mejores hipeparametros 
 
-# grid = GridSearchCV(estimator=rf_clf_model, param_grid=params, cv=5)
+# grid = GridSearchCV(estimator=rf_model, param_grid=params, cv=5)
 
 # grid.fit(train_features, train_target)
 
-# # # mostrar los mejores hiperparámetros del modelo
+# Mostrar los mejores hiperparámetros del modelo
 
 # grid.best_params_
 
@@ -96,3 +101,41 @@ print('\n Conjunto de entrenamiento:', rf_accuracy_train, '\n')
 
 print('\n Conjunto de prueba:', rf_roc_auc_test, '\n')
 print('\n Conjunto de prueba:', rf_accuracy_test, '\n')
+
+
+""" ARBOL DE DECISION """
+
+# Construir un modelo de arbol de decision
+dt_model = DecisionTreeClassifier(
+    random_state=42,
+    class_weight='balanced',
+    criterion='gini',
+    max_depth=5,
+    max_features=6,
+    min_samples_split=2,
+    splitter='random'
+    )
+
+# Establecer hiperparametros para el buscador
+
+# params = {
+#     'max_depth' : [5, 10, 20],
+#     'min_samples_split' : [2, 4, 6],
+#     'max_features' : [2, 4, 6],
+#     'class_weight' : ['balanced', 'None'],
+#     'criterion' : ['gini', 'entropy', 'log_loss'],
+#     'splitter' : ['best', 'random']
+# } 
+ 
+# Buscar los mejores hipeparametros 
+
+# grid = GridSearchCV(estimator=dt_model, param_grid=params, cv=5)
+
+# grid.fit(train_features, train_target)
+
+# # Mostrar los mejores hiperparámetros del modelo
+
+# grid.best_params_
+
+# Mejores hiperparametros 
+# # {'class_weight': 'balanced', 'criterion': 'gini', 'max_depth': 5, 'max_features': 6, 'min_samples_split': 2, 'splitter': 'random'}
