@@ -191,3 +191,21 @@ cb_model = CatBoostClassifier(
 # # Mejores hiperparametros 
 
 # # # {'iterations': 50, 'learning_rate': 0.1, 'loss_function': 'CrossEntropy', 'max_depth': 10}
+
+
+""" ENTRENAMIENTO Y EVALUACION DEL MODELO CATBOOST """
+
+# Entrenar el modelo 
+cb_model.fit(train_features, train_target,  cat_features=None)
+
+# Evaluar el modelo en conjunto de entrenamiento
+cb_roc_auc_train, cb_accuracy_train = model_eval(cb_model, train_target, train_features)
+
+# Evaluar el modelo en conjunto de prueba 
+cb_roc_auc_test, cb_accuracy_test = model_eval(cb_model, test_target, test_features)
+
+print('\n Auc_roc conjunto de entrenamiento (CB):', cb_roc_auc_train, '\n')
+print('\n Exactitud conjunto de entrenamiento (CB):', cb_accuracy_train, '\n')
+
+print('\n Auc_roc conjunto de prueba (CB):', cb_roc_auc_test, '\n')
+print('\n Exactitud conjunto de prueba (CB):', cb_accuracy_test, '\n')
