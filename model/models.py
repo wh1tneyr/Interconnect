@@ -215,4 +215,35 @@ print('\n Exactitud conjunto de prueba (CB):', cb_accuracy_test, '\n')
 """ MODELO LIGHTGBM """
 
 # Construir el modelo lightgbm
-lgbm_model = LGBMClassifier(random_state=42)
+lgbm_model = LGBMClassifier(
+    random_state=42,
+    n_estimator =  20,
+    learning_rate =  0.8,
+    objective = 'binary',
+    class_weight = 'balanced',
+    max_depth = 10
+    )
+
+# Establecer hiperparametros para el buscador
+# params = {
+#     'n_estimator' : [20, 100, 150],
+#     'learning_rate' : [0.01, 0.1, 0.5, 0.8],
+#     'objective' : ['binary', 'None'],
+#     'class_weight' : ['balanced', 'None'],
+#     'max_depth' : [10, 20, 40]
+#     }
+
+
+# # # Buscar los mejores hipeparametros 
+
+# grid = GridSearchCV(estimator=lgbm_model, param_grid=params, cv=5)
+
+# grid.fit(train_features, train_target)
+
+# # Mostrar los mejores hiperparámetros del modelo
+
+# grid.best_params_
+
+# Mejores hiperparametros 
+
+# # {'class_weight': 'balanced', 'learning_rate': 0.8, 'max_depth': 10, 'n_estimator': 20, 'objective': 'binary'}
