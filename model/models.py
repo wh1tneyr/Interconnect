@@ -260,8 +260,8 @@ lgbm_roc_auc_train, lgbm_accuracy_train = model_eval(lgbm_model, train_target, t
 # Evaluar el modelo en conjunto de prueba 
 lgbm_roc_auc_test, lgbm_accuracy_test = model_eval(lgbm_model, test_target, test_features)
 
-print('\n Auc_roc conjunto de entrenamiento (CB):', lgbm_roc_auc_train, '\n')
-print('\n Exactitud conjunto de entrenamiento (CB):', lgbm_accuracy_train, '\n')
+print('\n Auc_roc conjunto de entrenamiento (LGBM):', lgbm_roc_auc_train, '\n')
+print('\n Exactitud conjunto de entrenamiento (LGBM):', lgbm_accuracy_train, '\n')
 
-print('\n Auc_roc conjunto de prueba (CB):', lgbm_roc_auc_test, '\n')
-print('\n Exactitud conjunto de prueba (CB):', lgbm_accuracy_test, '\n')
+print('\n Auc_roc conjunto de prueba (LGBM):', lgbm_roc_auc_test, '\n')
+print('\n Exactitud conjunto de prueba (LGBM):', lgbm_accuracy_test, '\n')
