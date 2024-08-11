@@ -247,3 +247,21 @@ lgbm_model = LGBMClassifier(
 # Mejores hiperparametros 
 
 # # {'class_weight': 'balanced', 'learning_rate': 0.8, 'max_depth': 10, 'n_estimator': 20, 'objective': 'binary'}
+
+
+""" ENTRENAR Y EVALUAR EL MODELO LIGHTGBM """
+
+# Entrenar el modelo
+lgbm_model.fit(train_features, train_target)
+
+# Evaluar el modelo en conjunto de entrenamiento
+lgbm_roc_auc_train, lgbm_accuracy_train = model_eval(lgbm_model, train_target, train_features)
+
+# Evaluar el modelo en conjunto de prueba 
+lgbm_roc_auc_test, lgbm_accuracy_test = model_eval(lgbm_model, test_target, test_features)
+
+print('\n Auc_roc conjunto de entrenamiento (CB):', lgbm_roc_auc_train, '\n')
+print('\n Exactitud conjunto de entrenamiento (CB):', lgbm_accuracy_train, '\n')
+
+print('\n Auc_roc conjunto de prueba (CB):', lgbm_roc_auc_test, '\n')
+print('\n Exactitud conjunto de prueba (CB):', lgbm_accuracy_test, '\n')
