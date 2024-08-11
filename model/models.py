@@ -11,6 +11,7 @@ from sklearn.metrics import roc_auc_score, accuracy_score
 from sklearn.model_selection import GridSearchCV
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.tree import DecisionTreeClassifier
+from catboost import CatBoostClassifier
 
 
 
@@ -155,3 +156,10 @@ print('\n Exactitud conjunto de entrenamiento (DT):', dt_accuracy_train, '\n')
 
 print('\n Auc_roc conjunto de prueba (DT):', dt_roc_auc_test, '\n')
 print('\n Exactitud conjunto de prueba (DT):', dt_accuracy_test, '\n')
+
+
+""" MODELO CATBOOST """
+
+# Construir un modelo catboost
+ct_model = CatBoostClassifier(random_seed=42)
+
