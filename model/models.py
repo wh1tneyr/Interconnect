@@ -12,6 +12,7 @@ from sklearn.model_selection import GridSearchCV
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.tree import DecisionTreeClassifier
 from catboost import CatBoostClassifier
+from lightgbm import LGBMClassifier
 
 
 
@@ -209,3 +210,9 @@ print('\n Exactitud conjunto de entrenamiento (CB):', cb_accuracy_train, '\n')
 
 print('\n Auc_roc conjunto de prueba (CB):', cb_roc_auc_test, '\n')
 print('\n Exactitud conjunto de prueba (CB):', cb_accuracy_test, '\n')
+
+
+""" MODELO LIGHTGBM """
+
+# Construir el modelo lightgbm
+lgbm_model = LGBMClassifier(random_state=42)
