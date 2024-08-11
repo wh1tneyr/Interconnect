@@ -161,5 +161,33 @@ print('\n Exactitud conjunto de prueba (DT):', dt_accuracy_test, '\n')
 """ MODELO CATBOOST """
 
 # Construir un modelo catboost
-ct_model = CatBoostClassifier(random_seed=42)
+cb_model = CatBoostClassifier(
+    random_seed=42,
+    iterations=50,
+    learning_rate=0.1,
+    loss_function='CrossEntropy',
+    max_depth=10
+    )
 
+
+# Establecer hiperparametros para el buscador
+# params = {
+#     'iterations' : [50, 100, 150 ],
+#     'learning_rate' : [0.01, 0.1, 0.5, 0.8],
+#     'loss_function' : ['CrossEntropy', 'AUC', 'BalancedAccuracy'],
+#     'max_depth' : [10, 20, 40],
+#     }
+
+# # Buscar los mejores hipeparametros 
+
+# grid = GridSearchCV(estimator=cb_model, param_grid=params, cv=5)
+
+# grid.fit(train_features, train_target)
+
+# # Mostrar los mejores hiperparámetros del modelo
+
+# grid.best_params_
+
+# # Mejores hiperparametros 
+
+# # # {'iterations': 50, 'learning_rate': 0.1, 'loss_function': 'CrossEntropy', 'max_depth': 10}
