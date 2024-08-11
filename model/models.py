@@ -83,7 +83,7 @@ rf_model = RandomForestClassifier(random_state=345,
 # Mejores hiperparametros :
 # # # {'class_weight': 'balanced', 'criterion': 'entropy', 'max_depth': 15, 'max_features': 6, 'min_samples_split': 2, 'n_estimators': 100}
 
-""" ENTRENAMIENTO Y EVALUACION """
+""" ENTRENAMIENTO Y EVALUACION BOSQUE ALEATORIO """
 
 # Entrenar el modelo de bosque aleatorio 
 rf_model.fit(train_features, train_target)
@@ -96,11 +96,11 @@ rf_roc_auc_test, rf_accuracy_test = model_eval(rf_model, test_target, test_featu
 
 print('\n Evaluación del modelo de Bosque Aleatorio: \n')
 
-print('\n Conjunto de entrenamiento:', rf_roc_auc_train, '\n')
-print('\n Conjunto de entrenamiento:', rf_accuracy_train, '\n')
+print('\n Auc_roc conjunto de entrenamiento:', rf_roc_auc_train, '\n')
+print('\n Exactitud conjunto de entrenamiento:', rf_accuracy_train, '\n')
 
-print('\n Conjunto de prueba:', rf_roc_auc_test, '\n')
-print('\n Conjunto de prueba:', rf_accuracy_test, '\n')
+print('\n Auc_roc conjunto de prueba:', rf_roc_auc_test, '\n')
+print('\n Exactitud conjunto de prueba:', rf_accuracy_test, '\n')
 
 
 """ ARBOL DE DECISION """
@@ -139,3 +139,23 @@ dt_model = DecisionTreeClassifier(
 
 # Mejores hiperparametros 
 # # {'class_weight': 'balanced', 'criterion': 'gini', 'max_depth': 5, 'max_features': 6, 'min_samples_split': 2, 'splitter': 'random'}
+
+
+""" ENTRENAMIENTO Y EVALUACION ARBOL DE DECISION """
+
+# Entrenar el modelo  
+dt_model.fit(train_features, train_target)
+
+# Evaluar el modelo en conjunto de entrenamiento
+dt_roc_auc_train, dt_accuracy_train = model_eval(dt_model, train_target, train_features)
+
+# Evaluar el modelo en conjunto de prueba 
+dt_roc_auc_test, dt_accuracy_test = model_eval(dt_model, test_target, test_features)
+
+print('\n Evaluación del modelo de Arbol de Decision: \n')
+
+print('\n Auc_roc conjunto de entrenamiento:', dt_roc_auc_train, '\n')
+print('\n Exactitud conjunto de entrenamiento:', dt_accuracy_train, '\n')
+
+print('\n Auc_roc conjunto de prueba:', dt_roc_auc_test, '\n')
+print('\n Exactitud conjunto de prueba:', dt_accuracy_test, '\n')
