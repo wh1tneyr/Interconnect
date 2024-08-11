@@ -75,19 +75,24 @@ rf_model = RandomForestClassifier(random_state=345,
 # grid.best_params_
 
 
-# # mejores hiperparametros :
+# Mejores hiperparametros :
 # # # {'class_weight': 'balanced', 'criterion': 'entropy', 'max_depth': 15, 'max_features': 6, 'min_samples_split': 2, 'n_estimators': 100}
 
-""" Entrenar el bosque aleatorio """
+""" ENTRENAMIENTO Y EVALUACION """
 
+# Entrenar el modelo de bosque aleatorio 
 rf_model.fit(train_features, train_target)
 
-# # evaluar el modelo de bosque aleatorio 
+# # Evaluar el modelo en conjunto de entrenamiento
+rf_roc_auc_train, rf_accuracy_train = model_eval(rf_model, train_target, train_features)
 
-rf_roc_auc_score, rf_accuracy = model_eval(rf_model, train_target, train_features)
+# # Evaluar el modelo en conjunto de prueba 
+rf_roc_auc_test, rf_accuracy_test = model_eval(rf_model, test_target, test_features)
 
-print('\n Evaluación auc_roc del bosque aleatorio:', rf_roc_auc_score, '\n')
-print('\n Evaluación de exactitud del bosque aleatorio:', rf_accuracy, '\n')
+print('\n Evaluación del modelo de Bosque Aleatorio: \n')
 
+print('\n Conjunto de entrenamiento:', rf_roc_auc_train, '\n')
+print('\n Conjunto de entrenamiento:', rf_accuracy_train, '\n')
 
-
+print('\n Conjunto de prueba:', rf_roc_auc_test, '\n')
+print('\n Conjunto de prueba:', rf_accuracy_test, '\n')
