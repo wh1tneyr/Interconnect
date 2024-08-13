@@ -43,12 +43,19 @@ def encoder_test(train_data, test_data):
     return data_encoded
     
     
-    
 """ Funcion para escalar caracteristicas numericas en conjunto de entrenamiento """
 def scaler_train(train_data):
     scaler = StandardScaler()
     data_scaled = pd.DataFrame(scaler.fit_transform(train_data), columns=train_data.columns)
     return data_scaled
+
+
+""" Funcion para escalar caracteristicas numericas en conjunto de prueba """
+def scaler_test(train_data, test_data):
+    scaler = StandardScaler()
+    scaler.fit(train_data)
+    data_test_scaled = pd.DataFrame(scaler.transform(test_data), columns=test_data.columns)
+    return data_test_scaled
 
 
 """ Funcion para guardar archivos parquet """
