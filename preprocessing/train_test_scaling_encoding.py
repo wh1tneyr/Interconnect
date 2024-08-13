@@ -12,7 +12,7 @@ data_test = read_parquet('files/datasets/final_provider/data_test.parquet')
 data_valid = read_parquet('files/datasets/final_provider/data_valid.parquet')
 
 
-# Filtrar columnas segun su tipo en conjunto de entrnamiento 
+# Filtrar columnas segun tipo en conjunto de entrnamiento 
 
 train_to_encode = data_train[['Type', 'PaperlessBilling', 'PaymentMethod', 'InternetService', 'OnlineSecurity', 'OnlineBackup', 'DeviceProtection', 'TechSupport', 'StreamingTV', 'StreamingMovies', 'gender', 'Partner', 'Dependents', 'MultipleLines']]
 
@@ -40,7 +40,7 @@ train_scaled_encoded = merge_1.merge(train_scaled, on='customerID')
 
 
 
-# Filtrar columnas segun su tipo en conjunto de prueba
+# Filtrar columnas segun tipo en conjunto de prueba
 
 test_to_encode = data_test[['Type', 'PaperlessBilling', 'PaymentMethod', 'InternetService', 'OnlineSecurity', 'OnlineBackup', 'DeviceProtection', 'TechSupport', 'StreamingTV', 'StreamingMovies', 'gender', 'Partner', 'Dependents', 'MultipleLines']]
 
@@ -66,3 +66,29 @@ merge_1 = test_other_columns.merge(test_encoded, on='customerID')
 
 test_scaled_encoded = merge_1.merge(test_scaled, on='customerID')
 
+
+# Filtrar columnas segun tipo en conjunto de validacion
+
+valid_to_encode = data_valid[['Type', 'PaperlessBilling', 'PaymentMethod', 'InternetService', 'OnlineSecurity', 'OnlineBackup', 'DeviceProtection', 'TechSupport', 'StreamingTV', 'StreamingMovies', 'gender', 'Partner', 'Dependents', 'MultipleLines']]
+
+valid_to_scale = data_valid[['MonthlyCharges', 'TotalCharges']]
+
+valid_other_columns = data_valid[['customerID', 'Churn', 'SeniorCitizen']]
+
+
+# Codificar conjunto de entrenamiento 
+valid_encoded = encoder_test(train_to_encode, valid_to_encode)
+
+# Agregarle los IDs para realizar un merge luego
+valid_encoded['customerID'] = data_valid['customerID']
+
+# Escalar conjunto de entrenamiento
+valid_scaled = scaler_test(train_to_scale, valid_to_scale)
+
+# Agregarle los IDs para realizar un merge luego
+valid_scaled['customerID'] = data_valid['customerID']
+
+# Unir todo en nuevo conjunto de entrenamiento escalado y codificado
+merge_1 = valid_other_columns.merge(valid_encoded, on='customerID')
+
+valid_scaled_encoded = merge_1.merge(valid_scaled, on='customerID')
