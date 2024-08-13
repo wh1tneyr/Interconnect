@@ -92,3 +92,9 @@ valid_scaled['customerID'] = data_valid['customerID']
 merge_1 = valid_other_columns.merge(valid_encoded, on='customerID')
 
 valid_scaled_encoded = merge_1.merge(valid_scaled, on='customerID')
+
+
+# Guardar los nuevos dataframes escalados y codificados 
+parquet(train_scaled_encoded, 'files/datasets/final_provider/datasets_scaled_encoded/train_scaled_encoded.parquet')
+parquet(test_scaled_encoded, 'files/datasets/final_provider/datasets_scaled_encoded/test_scaled_encoded.parquet')
+parquet(valid_scaled_encoded, 'files/datasets/final_provider/datasets_scaled_encoded/valid_scaled_encoded.parquet')
