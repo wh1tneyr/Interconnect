@@ -14,10 +14,6 @@ full_data = pd.read_parquet('files/datasets/final_provider/full_data.parquet')
 data_to_split = full_data.drop(['EndDate', 'BeginDate'], axis=1)
 
 
-# Establecer los IDs como indices
-data_to_split.set_index('customerID', inplace=True)
-
-
 # Dividir subconjuntos de entrenamiento, prueba y validación
 
 data_train, data_test_1 = train_test_split(data_to_split, test_size=0.30, random_state=42)
