@@ -12,3 +12,8 @@ full_data = pd.read_parquet('files/datasets/final_provider/full_data.parquet')
 
 # Eliminar las columnas de fechas del df 
 data_to_split = full_data.drop(['EndDate', 'BeginDate'], axis=1)
+
+
+# Establecer los IDs como indices
+data_to_split.set_index('customerID', inplace=True)
+
