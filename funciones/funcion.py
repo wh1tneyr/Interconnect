@@ -25,10 +25,20 @@ def to_date_time(data):
 
 
 
-""" Funcion para codificar caracteristicas categoricas """
-def encoder(data):
+""" Funcion para codificar caracteristicas categoricas  en conjunto de entrenamiento """
+def encoder_train(train_data):
     encoder = OrdinalEncoder()
-    data_encoded = pd.DataFrame(encoder.fit_transform(data), columns=data.columns)
+    data_encoded = pd.DataFrame(encoder.fit_transform(train_data), columns=train_data.columns)
+    data_encoded = data_encoded.astype('int')
+    return data_encoded
+    
+    
+    
+""" Funcion para codificar caracteristicas categoricas  en conjunto de prueba """
+def encoder_test(train_data, test_data):
+    encoder = OrdinalEncoder()
+    encoder.fit(train_data)
+    data_test_encoded = pd.DataFrame(encoder.transform(test_data), columns=test_data.columns)
     data_encoded = data_encoded.astype('int')
     return data_encoded
     
