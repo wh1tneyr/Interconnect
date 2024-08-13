@@ -34,10 +34,10 @@ def encoder(data):
     
     
     
-""" Funcion para escalar caracteristicas numericas """
-def scaler(data):
+""" Funcion para escalar caracteristicas numericas en conjunto de entrenamiento """
+def scaler_train(train_data):
     scaler = StandardScaler()
-    data_scaled = pd.DataFrame(scaler.fit_transform(data), columns=data.columns)
+    data_scaled = pd.DataFrame(scaler.fit_transform(train_data), columns=train_data.columns)
     return data_scaled
 
 
