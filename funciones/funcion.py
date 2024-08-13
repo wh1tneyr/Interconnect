@@ -39,8 +39,8 @@ def encoder_test(train_data, test_data):
     encoder = OrdinalEncoder()
     encoder.fit(train_data)
     data_test_encoded = pd.DataFrame(encoder.transform(test_data), columns=test_data.columns)
-    data_encoded = data_encoded.astype('int')
-    return data_encoded
+    data_test_encoded = data_test_encoded.astype('int')
+    return data_test_encoded
     
     
 """ Funcion para escalar caracteristicas numericas en conjunto de entrenamiento """
