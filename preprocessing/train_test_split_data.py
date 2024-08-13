@@ -27,6 +27,6 @@ data_test, data_valid = train_test_split(data_test_1, test_size=0.30, random_sta
 
 # Guardar los subconjuntos en archivos parquet
 
-# parquet(data_train, 'files/datasets/final_provider/data_train.parquet')
-# parquet(data_test, 'files/datasets/final_provider/data_test.parquet')
-# parquet(data_valid, 'files/datasets/final_provider/data_valid.parquet')
+parquet(data_train, 'files/datasets/final_provider/data_train.parquet') 
+parquet(data_test, 'files/datasets/final_provider/data_test.parquet')
+parquet(data_valid, 'files/datasets/final_provider/data_valid.parquet')
