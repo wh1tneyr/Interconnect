@@ -37,3 +37,32 @@ train_scaled['customerID'] = data_train['customerID']
 merge_1 = train_other_columns.merge(train_encoded, on='customerID')
 
 train_scaled_encoded = merge_1.merge(train_scaled, on='customerID')
+
+
+
+# Filtrar columnas segun su tipo en conjunto de prueba
+
+test_to_encode = data_test[['Type', 'PaperlessBilling', 'PaymentMethod', 'InternetService', 'OnlineSecurity', 'OnlineBackup', 'DeviceProtection', 'TechSupport', 'StreamingTV', 'StreamingMovies', 'gender', 'Partner', 'Dependents', 'MultipleLines']]
+
+test_to_scale = data_test[['MonthlyCharges', 'TotalCharges']]
+
+test_other_columns = data_test[['customerID', 'Churn', 'SeniorCitizen']]
+
+
+# Codificar conjunto de entrenamiento 
+test_encoded = encoder_test(train_to_encode, test_to_encode)
+
+# Agregarle los IDs para realizar un merge luego
+test_encoded['customerID'] = data_test['customerID']
+
+# Escalar conjunto de entrenamiento
+test_scaled = scaler_test(train_to_scale, test_to_scale)
+
+# Agregarle los IDs para realizar un merge luego
+test_scaled['customerID'] = data_test['customerID']
+
+# Unir todo en nuevo conjunto de entrenamiento escalado y codificado
+merge_1 = test_other_columns.merge(test_encoded, on='customerID')
+
+test_scaled_encoded = merge_1.merge(test_scaled, on='customerID')
+
