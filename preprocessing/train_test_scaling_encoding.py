@@ -12,19 +12,28 @@ data_test = read_parquet('files/datasets/final_provider/data_test.parquet')
 data_valid = read_parquet('files/datasets/final_provider/data_valid.parquet')
 
 
-# # Filtrar los nombres de columnas segun el tipo 
-
-cat_columns = ['Type', 'PaperlessBilling', 'PaymentMethod', 'InternetService', 'OnlineSecurity', 'OnlineBackup', 'DeviceProtection', 'TechSupport', 'StreamingTV', 'StreamingMovies', 'gender', 'Partner', 'Dependents', 'MultipleLines']
-
-num_columns = ['MonthlyCharges', 'TotalCharges']
-
-other_columns = ['customerID', 'SeniorCitizen', 'Churn']
-
-
 # Filtrar columnas segun su tipo en conjunto de entrnamiento 
 
 train_to_encode = data_train[['Type', 'PaperlessBilling', 'PaymentMethod', 'InternetService', 'OnlineSecurity', 'OnlineBackup', 'DeviceProtection', 'TechSupport', 'StreamingTV', 'StreamingMovies', 'gender', 'Partner', 'Dependents', 'MultipleLines']]
 
 train_to_scale = data_train[['MonthlyCharges', 'TotalCharges']]
 
-train_other_columns = data_train[['customerID', 'SeniorCitizen', 'Churn']]
+train_other_columns = data_train[['customerID', 'Churn', 'SeniorCitizen']]
+
+
+# Codificar conjunto de entrenamiento 
+train_encoded = encoder_train(train_to_encode)
+
+# Agregarle los IDs para realizar un merge luego
+train_encoded['customerID'] = data_train['customerID']
+
+# Escalar conjunto de entrenamiento
+train_scaled = scaler_train(train_to_scale)
+
+# Agregarle los IDs para realizar un merge luego
+train_scaled['customerID'] = data_train['customerID']
+
+# Unir todo en nuevo conjunto de entrenamiento escalado y codificado
+merge_1 = train_other_columns.merge(train_encoded, on='customerID')
+
+train_scaled_encoded = merge_1.merge(train_scaled, on='customerID')
