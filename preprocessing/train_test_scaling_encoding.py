@@ -12,14 +12,19 @@ data_test = read_parquet('files/datasets/final_provider/data_test.parquet')
 data_valid = read_parquet('files/datasets/final_provider/data_valid.parquet')
 
 
-data_train.info()
-
-# Codificar varibales categoricas en subconjuntos 
-
 # # Filtrar los nombres de columnas segun el tipo 
 
-cat_columns = ['customerID', 'Type', 'PaperlessBilling', 'PaymentMethod', 'InternetService', 'OnlineSecurity', 'OnlineBackup', 'DeviceProtection', 'TechSupport', 'StreamingTV', 'StreamingMovies', 'gender', 'Partner', 'Dependents', 'MultipleLines']
+cat_columns = ['Type', 'PaperlessBilling', 'PaymentMethod', 'InternetService', 'OnlineSecurity', 'OnlineBackup', 'DeviceProtection', 'TechSupport', 'StreamingTV', 'StreamingMovies', 'gender', 'Partner', 'Dependents', 'MultipleLines']
 
 num_columns = ['MonthlyCharges', 'TotalCharges']
 
-other_columns = ['customerID', 'BeginDate', 'EndDate', 'SeniorCitizen', 'Churn']
+other_columns = ['customerID', 'SeniorCitizen', 'Churn']
+
+
+# Filtrar columnas segun su tipo en conjunto de entrnamiento 
+
+train_to_encode = data_train[['Type', 'PaperlessBilling', 'PaymentMethod', 'InternetService', 'OnlineSecurity', 'OnlineBackup', 'DeviceProtection', 'TechSupport', 'StreamingTV', 'StreamingMovies', 'gender', 'Partner', 'Dependents', 'MultipleLines']]
+
+train_to_scale = data_train[['MonthlyCharges', 'TotalCharges']]
+
+train_other_columns = data_train[['customerID', 'SeniorCitizen', 'Churn']]
