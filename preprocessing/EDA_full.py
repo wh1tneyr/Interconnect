@@ -141,18 +141,31 @@ type_churn_count = type_churn_count.drop(['Total'], axis=1)
 
 """ Grafico: tasa de cancelación por tipo de contrato"""
 
-#crear grafico de barras
-# colors = ['blue', 'orange', ]
-# ax_type_churn_count = type_churn_count.plot(kind='bar', color=colors, edgecolor='black')
+# Crear grafico de barras para la cancelacion de contratos por tipo 
+# colors = ['blue', 'orange']
+# ax_type_churn_count = type_churn_count[['Type', 'In', 'Out']].plot(kind='bar', color=colors, edgecolor='black')
 # ax_type_churn_count.set_xticklabels(type_churn_count['Type'], rotation=45)
 
-# # Agregar título y etiquetas
-# plt.title('Tasa de cancelación por tipo de contrato')
+# # # Agregar título y etiquetas
+# plt.title('Cantidad de contratos vigentes y cancelados por tipo')
 # plt.xlabel('Tipo de Contrato')
-# plt.ylabel('Tasa de cancelación')
-# plt.legend(title='Contratos', labels=['In', 'Out'])
+# plt.ylabel('Cantidad de contratos')
+# plt.legend(title='Contratos', labels=['Vigentes', 'Cancelados'])
 
 # plt.show()
+
+# # Graficar la tasa de cancelacion segun tipo de contrato
+# ax_churn_rate = type_churn_count['Churn_rate'].plot(kind='bar', color='orange', edgecolor='black')
+# ax_churn_rate.set_xticklabels(type_churn_count['Type'], rotation=45)
+
+# # # Agregar título y etiquetas
+# plt.title('Tasa de cancelación por tipo de contrato')
+# plt.xlabel('Tipo de Contrato')
+# plt.ylabel('Porcentaje de cancelación')
+# plt.legend(['Cancelación'])
+
+# plt.show()
+
 
 
 """ EVALUAR LOS MONTOS MENSUALES SEGUN TIPO DE CONTRATO """
