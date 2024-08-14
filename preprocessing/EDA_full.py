@@ -129,9 +129,10 @@ out_.columns = ['Type', 'Out']
 # crear un nuevo dataframe para el conteo de cancelacion por tipo de contrato 
 type_churn_count = in_.merge(out_, on='Type')
 
-# Sumar la cantidad de contratos segun el tipo 
-type_churn_count['total'] = type_churn_count['In'] + type_churn_count['Out']
+# Calcular el porcentaje de cancelacion segun el tipo 
+type_churn_count['Total'] = type_churn_count['In'] + type_churn_count['Out']
 
+type_churn_count['Churn_rate'] = (type_churn_count['Out'] / type_churn_count['Total']) * 100
 
 """ Grafico: tasa de cancelación por tipo de contrato"""
 
