@@ -2,7 +2,7 @@ import pandas as pd
 import os, sys
 sys.path.append(os.getcwd())
 
-from funciones.funcion import read_csv, read_parquet, parquet, group_service, group_gender_churn, group_gender_churn_no_condition
+from funciones.funcion import read_csv, read_parquet, parquet, group_service, group_gender_churn, group_gender_churn_no_condition, encoder_train, encoder_test
 
 
 import matplotlib.pyplot as plt
