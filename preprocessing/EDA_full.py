@@ -134,6 +134,11 @@ type_churn_count['Total'] = type_churn_count['In'] + type_churn_count['Out']
 
 type_churn_count['Churn_rate'] = (type_churn_count['Out'] / type_churn_count['Total']) * 100
 
+# Eliminar columna 'Total' 
+
+type_churn_count = type_churn_count.drop(['Total'], axis=1)
+
+
 """ Grafico: tasa de cancelación por tipo de contrato"""
 
 #crear grafico de barras
