@@ -2,7 +2,7 @@ import pandas as pd
 import os, sys
 sys.path.append(os.getcwd())
 
-from funciones.funcion import read_csv, read_parquet, parquet, group_service, group_gender_churn, encoder, group_gender_churn_no_condition
+from funciones.funcion import read_csv, read_parquet, parquet, group_service, group_gender_churn, group_gender_churn_no_condition
 
 
 import matplotlib.pyplot as plt
@@ -128,6 +128,9 @@ out_.columns = ['Type', 'Out']
 
 # crear un nuevo dataframe para el conteo de cancelacion por tipo de contrato 
 type_churn_count = in_.merge(out_, on='Type')
+
+# Sumar la cantidad de contratos segun el tipo 
+type_churn_count['total'] = type_churn_count['In'] + type_churn_count['Out']
 
 
 """ Grafico: tasa de cancelación por tipo de contrato"""
