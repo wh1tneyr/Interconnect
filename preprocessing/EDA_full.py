@@ -2,7 +2,7 @@ import pandas as pd
 import os, sys
 sys.path.append(os.getcwd())
 
-from funciones.funcion import read_csv, read_parquet, parquet, group_service, group_gender_churn, group_gender_churn_no_condition, encoder_train, encoder_test
+from funciones.funcion import read_csv, read_parquet, parquet, group_service, group_gender_churn, group_gender_churn_no_condition, encoder_train, encoder_test, group_two_features
 
 
 import matplotlib.pyplot as plt
@@ -335,109 +335,11 @@ encoded = encoder_train(data_personal_info[['Partner', 'Dependents', 'MultipleLi
 # Unir las nuevas variables codificadas al resto del df que no necesito codificacion
 personal_encoded[['Partner', 'Dependents', 'MultipleLines']] = encoded 
 
-""" FUNCION DE PRUEBA PARA AGRUPAR DOS CARACTERISTICAS SEGUN PERSONAL INFO """
-    
-def group_two_features(full_data, column_1, column_2):
-    
-    # Agrupar y contar los valores de 'Churn'
-    values = full_data.groupby([column_1, column_2])['Churn'].value_counts().reset_index(name='Count')
 
-    # Comprobar que las condiciones en ambas columnas agrupadas son ciertas 
-    two_condition_true = values[(values[column_1] == 1) & (values[column_2] == 1)]
-    
-    # Conservar solo la clase negativa para ver contratos cancelados 
-    two_condition_true_churn = two_condition_true[two_condition_true['Churn'] == 0].drop(['Churn'], axis=1).reset_index(drop=True)
-    
-    # Comprobar que la primera condicion es cierta y la segundo no 
-    first_condition_true = values[(values[column_1] == 1) & (values[column_2] == 0)]
-    
-    # Conservar solo la clase negativa para ver contratos cancelados 
-    first_condition_true_churn = first_condition_true[first_condition_true['Churn'] == 0].drop(['Churn'], axis=1).reset_index(drop=True)
-    
-    # Comprobar que la primera condicion es falsa y la segundo cierta
-    first_condition_false = values[(values[column_1] == 0) & (values[column_2] == 1)]
-    
-    # Conservar solo la clase negativa para ver contratos cancelados 
-    first_condition_false_churn = first_condition_false[first_condition_false['Churn'] == 0].drop(['Churn'], axis=1).reset_index(drop=True)
-    
-    # Comprobar que la primera y la segunda condiciones son falsas
-    two_condition_false = values[(values[column_1] == 0) & (values[column_2] == 0)]
-    
-    # Conservar solo la clase negativa para ver contratos cancelados 
-    two_condition_false_churn = two_condition_false[two_condition_false['Churn'] == 0].drop(['Churn'], axis=1).reset_index(drop=True)
-    
-    # if len(data) < 2:
-    #     raise ValueError("No hay suficientes datos para las clases 'female' y 'male'.")
-
-    # # Asignar 'true' y 'false' basados en la condición
-    # female = data.iloc[0]
-    # male = data.iloc[1]
-
-    # Construir el DataFrame resultante
-    df = [
-        {'condition_1': 'true': two_condition_true_churn[column_1], 'false': first_condition_false_churn[column_1]},
-        {'condition_1': column_1, 'true': two_condition_true_churn[column_1]},
-        {'condition_1': column_1, 'true': first_condition_true_churn[column_1]},
-        {'condition_1': column_1, 'false': first_condition_false[column_1]},
-        {'condition_1': column_1, 'false': two_condition_false_churn[column_1]},
-        {'condition_2': column_2, 'true': two_condition_true_churn[column_2]},
-        {'condition_2': column_2, 'true': first_condition_false_churn[column_2]},
-        {'condition_2': column_2, 'false': first_condition_true_churn[column_2]},
-        {'condition_2': column_2, 'false': two_condition_false_churn[column_2]}
-    ]   
-    
-    result_data = pd.DataFrame(df)
-    return result_data
+# # Agrupar segun dos caracateristicas
+senior_citizen_partner = group_two_features(personal_encoded, 'SeniorCitizen', 'Partner')
 
 
-
-""" PRUEBAAAA """
-
-def group_two_features(full_data, column_1, column_2):
-    # Agrupar y contar los valores de 'Churn'
-    values = full_data.groupby([column_1, column_2])['Churn'].value_counts().unstack().fillna(0).reset_index()
-    
-    # Filtrar solo la clase negativa para ver contratos cancelados
-    churn_zero = values[values[0] > 0].copy()
-    
-    # Crear una lista para almacenar los resultados
-    results = []
-    
-    # Definir las combinaciones de condiciones
-    conditions = [
-        (1, 1),  # Ambos true
-        (1, 0),  # column_1 true, column_2 false
-        (0, 1),  # column_1 false, column_2 true
-        (0, 0)   # Ambos false
-    ]
-    
-    # Iterar sobre cada combinación de condiciones
-    for cond_1, cond_2 in conditions:
-        condition_label = f"{column_1}={cond_1}, {column_2}={cond_2}"
-        
-        # Filtrar los valores que cumplen la condición
-        subset = churn_zero[(churn_zero[column_1] == cond_1) & (churn_zero[column_2] == cond_2)]
-        
-        # Verificar si hay datos suficientes para la condición
-        if subset.empty:
-            continue
-        
-        # Construir la fila del DataFrame resultante
-        result = {
-            'condition': condition_label,
-            'count': subset[0].values[0]  # La cantidad de churn=0 en esta combinación
-        }
-        results.append(result)
-    
-    # Convertir los resultados a un DataFrame
-    result_data = pd.DataFrame(results)
-    
-    return result_data
-
-
-
-
-PRUEBA = group_two_features(personal_encoded, 'SeniorCitizen', 'Partner')
 
 
 # agrupar cancelaciones segun condicion y genero cuando se cumple la condicion
