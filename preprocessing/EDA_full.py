@@ -336,13 +336,21 @@ encoded = encoder_train(data_personal_info[['Partner', 'Dependents', 'MultipleLi
 personal_encoded[['Partner', 'Dependents', 'MultipleLines']] = encoded 
 
 
-# # Agrupar segun dos caracateristicas
-senior_citizen_partner = group_two_features(personal_encoded, 'SeniorCitizen', 'Partner')
+# # Agrupar SeniorCitizen segun otras caracteristicas
+senior_partner = group_two_features(personal_encoded, 'SeniorCitizen', 'Partner')
+senior_dependents = group_two_features(personal_encoded, 'SeniorCitizen', 'Dependents')
+senior_multiple_lines = group_two_features(personal_encoded, 'SeniorCitizen', 'MultipleLines')
 
+# Agrupar Partner segun otras caracteristicas
+partner_dependents = group_two_features(personal_encoded, 'Partner', 'Dependents')
+partner_multiple_lines = group_two_features(personal_encoded, 'Partner', 'MultipleLines')
 
+# Agrupar Dependents segun otras caracteristicas
+dependets_multiple_lines = group_two_features(personal_encoded, 'Dependents', 'MultipleLines')
 
 
 # agrupar cancelaciones segun condicion y genero cuando se cumple la condicion
+
 senior_churn = group_gender_churn(personal_encoded, 'gender', 'SeniorCitizen')
 partner_churn = group_gender_churn(personal_encoded, 'gender', 'Partner')
 dependents_churn = group_gender_churn(personal_encoded, 'gender', 'Dependents')
