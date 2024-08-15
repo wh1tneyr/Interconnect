@@ -88,6 +88,7 @@ def group_service(full_data, column):
 
 
 
+
 """ Funcion para agrupar por genero e informacion personal y contar las cancelaciones para personas que cumplen la condicion descrita """  
 
 def group_gender_churn(full_data, gender_column, column):
@@ -107,6 +108,8 @@ def group_gender_churn(full_data, gender_column, column):
     # Construir el DataFrame resultante
     result_df = pd.DataFrame({'condition': [column], 'female': [female['count']], 'male': [male['count']]})
     return result_df
+
+
 
 
 """ Funcion para agrupar por genero e informacion personal y contar las cancelaciones para personas que NO cumplen la condicion descrita """ 
@@ -130,6 +133,55 @@ def group_gender_churn_no_condition(full_data, gender_column, column):
     return result_df
 
 
+
+
+""" FUNCION DE PRUEBA PARA AGRUPAR DOS CARACTERISTICAS SEGUN PERSONAL INFO Y CONTAR LOS CONTRATOS CANCELADOS  """
+
+
+def group_two_features(full_data, column_1, column_2):
+    # Agrupar y contar los valores de 'Churn'
+    values = full_data.groupby([column_1, column_2])['Churn'].value_counts().unstack().fillna(0).reset_index()
+    
+    # Filtrar solo la clase negativa para ver contratos cancelados
+    churn_zero = values[values[0] > 0].copy()
+    
+    # Crear una lista para almacenar los resultados
+    results = []
+    
+    # Definir las combinaciones de condiciones
+    conditions = [
+        (1, 1),  # Ambos true
+        (1, 0),  # column_1 true, column_2 false
+        (0, 1),  # column_1 false, column_2 true
+        (0, 0)   # Ambos false
+    ]
+    
+    # Iterar sobre cada combinación de condiciones
+    for cond_1, cond_2 in conditions:
+        condition_label = f"{column_1}={cond_1}, {column_2}={cond_2}"
+        
+        # Filtrar los valores que cumplen la condición
+        subset = churn_zero[(churn_zero[column_1] == cond_1) & (churn_zero[column_2] == cond_2)]
+        
+        # Verificar si hay datos suficientes para la condición
+        if subset.empty:
+            continue
+        
+        # Construir la fila del DataFrame resultante
+        result = {
+            'condition': condition_label,
+            'count': subset[0].values[0]  # La cantidad de churn=0 en esta combinación
+        }
+        results.append(result)
+    
+    # Convertir los resultados a un DataFrame
+    result_data = pd.DataFrame(results)
+    
+    return result_data
+
+
+
+
 """ Funcion para evaluar los modelos con roc_auc y exactitud  """
 
 def model_eval(model, train_target, train_features):
@@ -150,3 +202,5 @@ def model_eval(model, train_target, train_features):
     model_accuracy = accuracy_score(train_target, predictions)
     
     return model_auc_roc_score, model_accuracy
+
+
