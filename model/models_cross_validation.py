@@ -43,3 +43,7 @@ rf_model = RandomForestClassifier(random_state=345,
                                   min_samples_split=5,      # Aumentar el mínimo de muestras para la división
                                   n_estimators=200          # Aumentar el número de estimadores
                                   )
+
+scores = cross_val_score(rf_model, features, target, cv=5)
+
+final_score = sum(scores) / len(scores)
