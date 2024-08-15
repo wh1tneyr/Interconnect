@@ -96,11 +96,15 @@ rf_roc_auc_train, rf_accuracy_train = model_eval(rf_model, train_target, train_f
 # # Evaluar el modelo en conjunto de prueba 
 rf_roc_auc_test, rf_accuracy_test = model_eval(rf_model, test_target, test_features)
 
-print('\n Auc_roc conjunto de entrenamiento (RF):', rf_roc_auc_train, '\n')
-print('\n Exactitud conjunto de entrenamiento (RF):', rf_accuracy_train, '\n')
 
-print('\n Auc_roc conjunto de prueba (RF):', rf_roc_auc_test, '\n')
-print('\n Exactitud conjunto de prueba (RF):', rf_accuracy_test, '\n')
+# Mostrar outputs de evaluacion
+# # Roc_auc
+rf_roc_auc_train
+rf_roc_auc_test
+
+# # Exactitud
+rf_accuracy_train
+rf_accuracy_test
 
 
 """ ARBOL DE DECISION """
@@ -151,6 +155,10 @@ dt_roc_auc_train, dt_accuracy_train = model_eval(dt_model, train_target, train_f
 
 # Evaluar el modelo en conjunto de prueba 
 dt_roc_auc_test, dt_accuracy_test = model_eval(dt_model, test_target, test_features)
+
+
+
+
 
 print('\n Auc_roc conjunto de entrenamiento (DT):', dt_roc_auc_train, '\n')
 print('\n Exactitud conjunto de entrenamiento (DT):', dt_accuracy_train, '\n')
