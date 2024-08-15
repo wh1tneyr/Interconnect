@@ -4,7 +4,7 @@ import os, sys
 sys.path.append(os.getcwd())
 
 # Funciones 
-from funciones.funcion import read_parquet, parquet
+from funciones.funcion import read_parquet, parquet, model_eval
 
 # Modelos 
 from sklearn.model_selection import GridSearchCV
@@ -12,6 +12,9 @@ from sklearn.ensemble import RandomForestClassifier
 from sklearn.tree import DecisionTreeClassifier
 from catboost import CatBoostClassifier
 from lightgbm import LGBMClassifier
+
+from sklearn.model_selection import cross_val_score
+
 
 
 # Leer el dataset completo 
