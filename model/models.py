@@ -54,10 +54,10 @@ valid_target = data_valid['Churn']
 rf_model = RandomForestClassifier(random_state=345,
                                       class_weight='balanced',
                                       criterion='entropy',
-                                      max_depth=15,
-                                      max_features=6,
-                                      min_samples_split=2,
-                                      n_estimators=100
+                                      max_depth=10,
+                                      max_features='sqrt',
+                                      min_samples_split=5,
+                                      n_estimators=200
                                       )
 
 # Establecer hiperparametros para el buscador
