@@ -16,3 +16,6 @@ from lightgbm import LGBMClassifier
 
 # Leer el dataset completo 
 full_data_scaled = read_parquet('files/datasets/final_provider/datasets_scaled_encoded/full_data_scaled.parquet')
+
+# Eliminar la columna de fechas del df
+full_data = full_data_scaled.drop(['BeginDate', 'EndDate'], axis=1)
