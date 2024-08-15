@@ -232,10 +232,10 @@ cb_accuracy_test
 lgbm_model = LGBMClassifier(
     random_state=42,
     n_estimators=200,          # Aumentar el número de estimadores
-    learning_rate=0.001,        # Reducir la tasa de aprendizaje
+    learning_rate=0.01,        # Reducir la tasa de aprendizaje
     objective='binary',
     class_weight='balanced',
-    max_depth=5,               # Reducir la profundidad máxima
+    max_depth=6,               # Reducir la profundidad máxima
     reg_alpha=0.1,             # Añadir regularización L1
     reg_lambda=0.1,            # Añadir regularización L2
     subsample=0.8,             # Muestreo de filas
