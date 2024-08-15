@@ -157,14 +157,15 @@ dt_roc_auc_train, dt_accuracy_train = model_eval(dt_model, train_target, train_f
 dt_roc_auc_test, dt_accuracy_test = model_eval(dt_model, test_target, test_features)
 
 
+# Mostrar outputs de evaluacion
+# # Roc_auc
+dt_roc_auc_train
+dt_roc_auc_test
 
+# # Exactitud
+dt_accuracy_train
+dt_accuracy_test
 
-
-print('\n Auc_roc conjunto de entrenamiento (DT):', dt_roc_auc_train, '\n')
-print('\n Exactitud conjunto de entrenamiento (DT):', dt_accuracy_train, '\n')
-
-print('\n Auc_roc conjunto de prueba (DT):', dt_roc_auc_test, '\n')
-print('\n Exactitud conjunto de prueba (DT):', dt_accuracy_test, '\n')
 
 
 """ MODELO CATBOOST """
