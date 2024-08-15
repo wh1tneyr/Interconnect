@@ -29,3 +29,17 @@ full_data.set_index('customerID', inplace=True)
 # Definir las caracteristicas y el objetivo
 features = full_data.drop(['Churn'], axis=1)
 target = full_data['Churn']
+
+
+
+""" BOSQUE ALEATORIO  """
+
+# Crear un modelo de bosque aleatorio
+rf_model = RandomForestClassifier(random_state=345,
+                                      class_weight='balanced',
+                                      criterion='entropy',
+                                      max_depth=15,
+                                      max_features=6,
+                                      min_samples_split=2,
+                                      n_estimators=100
+                                      )
