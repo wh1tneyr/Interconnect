@@ -231,12 +231,18 @@ cb_accuracy_test
 # Construir el modelo lightgbm
 lgbm_model = LGBMClassifier(
     random_state=42,
-    n_estimator =  20,
-    learning_rate =  0.8,
-    objective = 'binary',
-    class_weight = 'balanced',
-    max_depth = 10
-    )
+    n_estimators=200,          # Aumentar el número de estimadores
+    learning_rate=0.001,        # Reducir la tasa de aprendizaje
+    objective='binary',
+    class_weight='balanced',
+    max_depth=5,               # Reducir la profundidad máxima
+    reg_alpha=0.1,             # Añadir regularización L1
+    reg_lambda=0.1,            # Añadir regularización L2
+    subsample=0.8,             # Muestreo de filas
+    colsample_bytree=0.8,      # Muestreo de características
+    #early_stopping_rounds=10   # Habilitar early stopping
+)
+
 
 # Establecer hiperparametros para el buscador
 # params = {
