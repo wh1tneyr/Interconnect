@@ -19,3 +19,6 @@ full_data_scaled = read_parquet('files/datasets/final_provider/datasets_scaled_e
 
 # Eliminar la columna de fechas del df
 full_data = full_data_scaled.drop(['BeginDate', 'EndDate'], axis=1)
+
+# Establecer la coluna IDs como indice del df
+full_data.set_index('customerID', inplace=True)
