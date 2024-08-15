@@ -214,12 +214,14 @@ cb_roc_auc_train, cb_accuracy_train = model_eval(cb_model, train_target, train_f
 # Evaluar el modelo en conjunto de prueba 
 cb_roc_auc_test, cb_accuracy_test = model_eval(cb_model, test_target, test_features)
 
-print('\n Auc_roc conjunto de entrenamiento (CB):', cb_roc_auc_train, '\n')
-print('\n Exactitud conjunto de entrenamiento (CB):', cb_accuracy_train, '\n')
+# Mostrar outputs de evaluacion
+# # Roc_auc
+cb_roc_auc_train
+cb_roc_auc_test
 
-print('\n Auc_roc conjunto de prueba (CB):', cb_roc_auc_test, '\n')
-print('\n Exactitud conjunto de prueba (CB):', cb_accuracy_test, '\n')
-
+# # Exactitud
+cb_accuracy_train
+cb_accuracy_test
 
 """ MODELO LIGHTGBM """
 
@@ -269,8 +271,11 @@ lgbm_roc_auc_train, lgbm_accuracy_train = model_eval(lgbm_model, train_target, t
 # Evaluar el modelo en conjunto de prueba 
 lgbm_roc_auc_test, lgbm_accuracy_test = model_eval(lgbm_model, test_target, test_features)
 
-print('\n Auc_roc conjunto de entrenamiento (LGBM):', lgbm_roc_auc_train, '\n')
-print('\n Exactitud conjunto de entrenamiento (LGBM):', lgbm_accuracy_train, '\n')
+# Mostrar outputs de evaluacion
+# # Roc_auc
+lgbm_roc_auc_train
+lgbm_roc_auc_test
 
-print('\n Auc_roc conjunto de prueba (LGBM):', lgbm_roc_auc_test, '\n')
-print('\n Exactitud conjunto de prueba (LGBM):', lgbm_accuracy_test, '\n')
+# # Exactitud
+lgbm_accuracy_train
+lgbm_accuracy_test
