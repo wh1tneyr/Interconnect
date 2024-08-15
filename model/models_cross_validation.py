@@ -36,10 +36,10 @@ target = full_data['Churn']
 
 # Crear un modelo de bosque aleatorio
 rf_model = RandomForestClassifier(random_state=345,
-                                      class_weight='balanced',
-                                      criterion='entropy',
-                                      max_depth=15,
-                                      max_features=6,
-                                      min_samples_split=2,
-                                      n_estimators=100
-                                      )
+                                  class_weight='balanced',
+                                  criterion='entropy',
+                                  max_depth=10,            # Reducir la profundidad máxima
+                                  max_features='sqrt',      # Utilizar sqrt para reducir el número de características por división
+                                  min_samples_split=5,      # Aumentar el mínimo de muestras para la división
+                                  n_estimators=200          # Aumentar el número de estimadores
+                                  )
