@@ -173,8 +173,8 @@ dt_accuracy_test
 # Construir un modelo catboost
 cb_model = CatBoostClassifier(
     random_seed=42,
-    iterations=200,          # Aumentar las iteraciones
-    learning_rate=0.01,      # Reducir la tasa de aprendizaje
+    iterations=150,          # Aumentar las iteraciones
+    learning_rate=0.05,      # Reducir la tasa de aprendizaje
     loss_function='CrossEntropy',
     max_depth=6,             # Reducir la profundidad máxima
     l2_leaf_reg=5,           # Agregar regularización L2
