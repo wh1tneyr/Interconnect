@@ -22,3 +22,7 @@ full_data = full_data_scaled.drop(['BeginDate', 'EndDate'], axis=1)
 
 # Establecer la coluna IDs como indice del df
 full_data.set_index('customerID', inplace=True)
+
+# Definir las caracteristicas y el objetivo
+features = full_data.drop(['Churn'], axis=1)
+target = full_data['Churn']
