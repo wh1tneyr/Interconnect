@@ -85,6 +85,7 @@ internet_ser.duplicated().sum()
 """ no hay duplicados ni ausentes. Tipos de datos correctos """
 
 
+# Guardar el datataset con la informacion de csontratos limpias en un archivo parquet
 user_contract_cleaned = user_contract
 
 user_contract_cleaned.to_parquet('files/datasets/final_provider/contract_cleaned.parquet', engine='pyarrow', index=False)
