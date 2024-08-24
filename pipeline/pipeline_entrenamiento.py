@@ -15,14 +15,20 @@ else:
         
         
         
-# Preproceso ---------------------------------------- 
+# Funciones para preproceso y EDA ---------------------------------------- 
+os.system(f"python3{extension_binarios} funciones/funcion.py")
 
+# Preproceso de datos ----------------------------------------------------
 os.system(f"python3{extension_binarios} preprocessing/cleaning_data.py")
 
-os.system(f"python{extension_binarios} preprocessing/a02_escalador.py")
+# Exploracion de datos -------------------------------------------
+os.system(f"python3{extension_binarios} preprocessing/EDA_full.py")
 
-os.system(f"python{extension_binarios} preprocessing/a03_split_train_test.py")
+# Segmentacion de datos para el modelo --------------------------------------
+os.system(f"python3{extension_binarios} preprocessing/train_test_split_data.py")
 
-# Modelo ---------------------------------------- 
+# Escalamiento y codificacion de datos para el modelos --------------------------------
+os.system(f"python3{extension_binarios} preprocessing/train_test_scaling_encoding.py")
 
-os.system(f"python{extension_binarios} models/b01_creacion_de_modelos.py")
+# Modelo --------------------------------------------------------------------------
+os.system(f"python3{extension_binarios} model/creacion_de_modelos.py")
