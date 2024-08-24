@@ -6,7 +6,7 @@ import joblib
 
 # Funciones 
 from funciones.funcion import read_parquet, parquet, model_eval
-from sklearn.metrics import roc_auc_score, accuracy_score
+
 
 # Modelos 
 from sklearn.model_selection import GridSearchCV
