@@ -4,7 +4,7 @@ El siguiente proyecto abordará una tarea de clasificación binaria para pronost
 El objetivo es construir un modelo de aprendizaje y entrenarlo con los datos de usuarios de la compañía y descubrir si alguno de ellos planea abandonarla. 
 
 
-## Cómo ejecutar el proyecto
+# Cómo ejecutar el proyecto
 
 Simplemente ejecutar:
 
