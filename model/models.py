@@ -2,6 +2,7 @@
 import pandas as pd
 import os, sys
 sys.path.append(os.getcwd())
+import joblib
 
 # Funciones 
 from funciones.funcion import read_parquet, parquet, model_eval
@@ -288,3 +289,25 @@ lgbm_roc_auc_test
 # # Exactitud
 lgbm_accuracy_train
 lgbm_accuracy_test
+
+# Save model ---------------------------------------- 
+
+joblib.dump(
+        rf_model,
+        f"files/modeling_output/model_fit/random_forest.joblib"
+        )
+
+joblib.dump(
+        dt_model,
+        f"files/modeling_output/model_fit/decision_tree.joblib"
+        )
+
+joblib.dump(
+        cb_model,
+        f"files/modeling_output/model_fit/catboost.joblib"
+        )
+
+joblib.dump(
+        lgbm_model,
+        f"files/modeling_output/model_fit/light_gbm.joblib"
+        )
