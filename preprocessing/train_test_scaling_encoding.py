@@ -3,7 +3,6 @@ import os, sys
 sys.path.append(os.getcwd())
 
 from funciones.funcion import read_parquet, parquet, scaler_train, scaler_test, encoder_train, encoder_test
-from sklearn.model_selection import train_test_split
 
 
 # Leer los subconjuntos de datos 
