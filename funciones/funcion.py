@@ -6,6 +6,7 @@ from sklearn.metrics import roc_auc_score, accuracy_score
 
 """ Funcion para leer archivos csv """
 def read_csv(path):
+    # TODO Agregar docstrings a todas las funciones
     data = pd.read_csv(path)
     return data
 

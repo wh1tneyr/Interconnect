@@ -61,6 +61,8 @@ rf_model = RandomForestClassifier(random_state=345,
                                       n_estimators=200
                                       )
 
+# TODO Borrar el código comentado. Con esto no sé si sebería descomentarlo o no. Este y todos los otros. Quizás con un par de muy pocas excepciones
+
 # Establecer hiperparametros para el buscador
 
 # params = {

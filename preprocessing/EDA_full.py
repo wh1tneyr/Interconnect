@@ -2,7 +2,7 @@ import pandas as pd
 import os, sys
 sys.path.append(os.getcwd())
 
-from funciones.funcion import read_csv, read_parquet, parquet, group_service, group_gender_churn, group_gender_churn_no_condition, encoder_train, encoder_test, group_two_features
+from funciones.funcion import read_csv, read_parquet, parquet, group_service, group_gender_churn, group_gender_churn_no_condition, encoder_train, encoder_test, group_two_features # TODO Cuando quieres importar todo, conviene usar * en vez de listar cada elemento. Y si es casi todo, quizás conviene importarlo todo igual a menos de que tengas un motivo para no hacerlo.
 
 
 import matplotlib.pyplot as plt
@@ -140,6 +140,8 @@ type_churn_count = type_churn_count.drop(['Total'], axis=1)
 
 
 """ Grafico: tasa de cancelación por tipo de contrato"""
+
+# TODO Idem, borra el código comentado
 
 # Crear grafico de barras para la cancelacion de contratos por tipo 
 # colors = ['blue', 'orange']
