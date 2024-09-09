@@ -451,3 +451,5 @@ gender_churn_rate = gender_churn[gender_churn['Churn']==0].drop(['Churn'], axis=
 # plt.xlabel('Género')
 # plt.ylabel('Tasa de cancelación')
 # plt.show()
+
+# TODO Sería bueno guardar los gráficos más relevantes en una carpeta de imágenes o algo así. Para poder ocuparlos después de ser necesario
