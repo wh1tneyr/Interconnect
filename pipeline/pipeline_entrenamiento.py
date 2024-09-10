@@ -16,7 +16,7 @@ else:
         
         
 # Funciones para preproceso y EDA ---------------------------------------- 
-os.system(f"python3{extension_binarios} funciones/funcion.py")
+os.system(f"python3{extension_binarios} funciones/funcion.py") # TODO No es necesario elecutar el script de funciones. Con cada ejecusión de python con `system`, se crea una nueva sesión de Python que es destruida cuando termina de ejecutarse. Basta con importarlo
 
 # Preproceso de datos ----------------------------------------------------
 os.system(f"python3{extension_binarios} preprocessing/cleaning_data.py")
