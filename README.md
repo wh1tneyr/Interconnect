@@ -6,9 +6,11 @@ El objetivo es construir un modelo de aprendizaje y entrenarlo con los datos de 
 
 # Cómo ejecutar el proyecto
 
-Simplemente ejecutar:
+Crear un ambiente virtual ejecutando: ```pip install -r requirements.txt``` para utilizar las mismas versiones de las librerías usadas en este proyecto. 
 
-python pipeline/pipeline_entrenamiento.py
+Luego, simplemente ejecutar: 
+```python pipeline/pipeline_entrenamiento.py```
+
 
 <!-- TODO La info escencial está en este readme, pero sería bueno ooner más detalles. A veces es bueno especificar cómo crear el ambiente virtual, para los que no sepan -->
 
