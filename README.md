@@ -1,7 +1,10 @@
 # Proyecto Interconnect
 
-El siguiente proyecto abordará una tarea de clasificación binaria para pronosticar la tasa de cancelación de clientes en una compañía de telecomunicaciones. 
-El objetivo es construir un modelo de aprendizaje y entrenarlo con los datos de usuarios de la compañía y descubrir si alguno de ellos planea abandonarla. 
+El siguiente proyecto aborda una tarea de clasificación binaria para pronosticar la tasa de cancelación de contratos de clientes en una compañía de telecomunicaciones. 
+
+Se construyeron y entrenaron varios modelos de aprendizaje supervisado utilizando técnicas de machine learning.
+
+Por otro lado, se han utilizado bases de datos de libre acceso y los datos presentados en el informe final no son sensibles. 
 
 
 # Cómo ejecutar el proyecto
