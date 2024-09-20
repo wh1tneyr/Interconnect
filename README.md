@@ -11,13 +11,3 @@ Crear un ambiente virtual ejecutando: ```pip install -r requirements.txt``` para
 Luego, simplemente ejecutar: 
 ```python pipeline/pipeline_entrenamiento.py```
 
-
-<!-- TODO La info escencial está en este readme, pero sería bueno ooner más detalles. A veces es bueno especificar cómo crear el ambiente virtual, para los que no sepan -->
-
-
-<!-- TODO Falta incluir requirements.txt --> AGREGADO
-<!-- TODO Ignora la carpeta catboost_info a menos que explícitamente quieras incluir algo. Hay varios logs ahí. --> LISTO
-<!-- TODO Para qué sirve venv.py? No encontré ese archivo siendo llamado en ninguna parte --> ELIMINADO
-
-
-<!-- TODO Está bien ignorar files, pero podría es útil comitear algunos readmes o por último unos .gitkeep solo para poder clonar la estructura de carpetas lista -->
