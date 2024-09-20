@@ -61,32 +61,6 @@ rf_model = RandomForestClassifier(random_state=345,
                                       n_estimators=200
                                       )
 
-# TODO Borrar el código comentado. Con esto no sé si sebería descomentarlo o no. Este y todos los otros. Quizás con un par de muy pocas excepciones
-
-# Establecer hiperparametros para el buscador
-
-# params = {
-#     'n_estimators' : [20, 60, 100],
-#     'max_depth' : [10, 15, 23],
-#     'min_samples_split' : [2, 3],
-#     'max_features' : [2, 4, 6],
-#     'class_weight' : ['balanced', 'balanced_subsample'],
-#     'criterion' : ['gini', 'entropy', 'log_loss']
-# } 
- 
-# Buscar los mejores hipeparametros 
-
-# grid = GridSearchCV(estimator=rf_model, param_grid=params, cv=5)
-
-# grid.fit(train_features, train_target)
-
-# Mostrar los mejores hiperparámetros del modelo
-
-# grid.best_params_
-
-
-# Mejores hiperparametros :
-# # # {'class_weight': 'balanced', 'criterion': 'entropy', 'max_depth': 15, 'max_features': 6, 'min_samples_split': 2, 'n_estimators': 100}
 
 """ ENTRENAMIENTO Y EVALUACION BOSQUE ALEATORIO """
 
@@ -122,30 +96,6 @@ dt_model = DecisionTreeClassifier(
     min_samples_split=2,
     splitter='random'
     )
-
-# Establecer hiperparametros para el buscador
-
-# params = {
-#     'max_depth' : [5, 10, 20],
-#     'min_samples_split' : [2, 4, 6],
-#     'max_features' : [2, 4, 6],
-#     'class_weight' : ['balanced', 'None'],
-#     'criterion' : ['gini', 'entropy', 'log_loss'],
-#     'splitter' : ['best', 'random']
-# } 
- 
-# Buscar los mejores hipeparametros 
-
-# grid = GridSearchCV(estimator=dt_model, param_grid=params, cv=5)
-
-# grid.fit(train_features, train_target)
-
-# # Mostrar los mejores hiperparámetros del modelo
-
-# grid.best_params_
-
-# Mejores hiperparametros 
-# # {'class_weight': 'balanced', 'criterion': 'gini', 'max_depth': 5, 'max_features': 6, 'min_samples_split': 2, 'splitter': 'random'}
 
 
 """ ENTRENAMIENTO Y EVALUACION ARBOL DE DECISION """
@@ -186,29 +136,6 @@ cb_model = CatBoostClassifier(
 
 
 
-# Establecer hiperparametros para el buscador
-# params = {
-#     'iterations' : [50, 100, 150 ],
-#     'learning_rate' : [0.01, 0.1, 0.5, 0.8],
-#     'loss_function' : ['CrossEntropy', 'AUC', 'BalancedAccuracy'],
-#     'max_depth' : [10, 20, 40],
-#     }
-
-# # Buscar los mejores hipeparametros 
-
-# grid = GridSearchCV(estimator=cb_model, param_grid=params, cv=5)
-
-# grid.fit(train_features, train_target)
-
-# # Mostrar los mejores hiperparámetros del modelo
-
-# grid.best_params_
-
-# # Mejores hiperparametros 
-
-# # # {'iterations': 50, 'learning_rate': 0.1, 'loss_function': 'CrossEntropy', 'max_depth': 10}
-
-
 """ ENTRENAMIENTO Y EVALUACION DEL MODELO CATBOOST """
 
 # Entrenar el modelo 
@@ -246,30 +173,6 @@ lgbm_model = LGBMClassifier(
     #early_stopping_rounds=10   # Habilitar early stopping
 )
 
-
-# Establecer hiperparametros para el buscador
-# params = {
-#     'n_estimator' : [20, 100, 150],
-#     'learning_rate' : [0.01, 0.1, 0.5, 0.8],
-#     'objective' : ['binary', 'None'],
-#     'class_weight' : ['balanced', 'None'],
-#     'max_depth' : [10, 20, 40]
-#     }
-
-
-# # # Buscar los mejores hipeparametros 
-
-# grid = GridSearchCV(estimator=lgbm_model, param_grid=params, cv=5)
-
-# grid.fit(train_features, train_target)
-
-# # Mostrar los mejores hiperparámetros del modelo
-
-# grid.best_params_
-
-# Mejores hiperparametros 
-
-# # {'class_weight': 'balanced', 'learning_rate': 0.8, 'max_depth': 10, 'n_estimator': 20, 'objective': 'binary'}
 
 
 """ ENTRENAR Y EVALUAR EL MODELO LIGHTGBM """
