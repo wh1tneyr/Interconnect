@@ -1,10 +1,6 @@
-# Proyecto Interconnect
+# Interconnect: Predicción de Cancelación de Clientes en una Compañía de Telecomunicaciones
 
-El siguiente proyecto aborda una tarea de clasificación binaria para pronosticar la tasa de cancelación de contratos de clientes en una compañía de telecomunicaciones. 
-
-Se construyeron y entrenaron varios modelos de aprendizaje supervisado utilizando técnicas de machine learning.
-
-Por otro lado, se han utilizado bases de datos de libre acceso y los datos presentados en el informe final no son sensibles. 
+Este proyecto se enfoca en desarrollar un modelo de clasificación binaria para predecir la tasa de cancelación de clientes (churn) en una empresa de telecomunicaciones. El objetivo es construir un modelo de aprendizaje supervisado que, utilizando datos históricos de los usuarios, pueda identificar aquellos que tienen una alta probabilidad de abandonar el servicio. Con esta información, la compañía podrá implementar estrategias de retención personalizadas, como ofertas promocionales y planes especiales, con el fin de reducir la tasa de cancelación y mejorar la fidelización de clientes.
 
 
 # Cómo ejecutar el proyecto
