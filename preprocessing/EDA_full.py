@@ -54,6 +54,9 @@ full_data['Churn'] = full_data['Churn'].replace('No', '1').apply(lambda x: 1 if 
 # guardar full_data como parquet
 parquet(full_data, 'files/datasets/final_provider/full_data.parquet')
 
+# Guardar el DataFrame en un archivo CSV
+full_data.to_csv('files/datasets/final_provider/full_data_cleaned.csv', index=False)
+
 
 """ DESEQUILIBRIO DE CLASES """
 
